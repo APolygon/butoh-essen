@@ -1,0 +1,43 @@
+---
+import WorkshopMeta from './WorkshopMeta.astro';
+import ContentSection from './ContentSection.astro';
+
+export interface Section {
+  type: 'text' | 'meta' | 'gallery' | 'contact';
+  title?: string;
+  content?: string;
+  date?: string;
+  location?: string;
+}
+
+export interface Props {
+  section: Section;
+}
+
+const { section } = Astro.props;
+---
+
+{section.type === 'meta' && section.date && section.location && (
+  <WorkshopMeta date={section.date} location={section.location} />
+)}
+
+{section.type === 'text' && section.content && (
+  <ContentSection>
+    {section.title && <h2>{section.title}</h2>}
+    <div set:html={section.content} />
+  </ContentSection>
+)}
+
+{section.type === 'gallery' && (
+  <ContentSection>
+    {section.title && <h2>{section.title}</h2>}
+    <p>Gallery component would go here</p>
+  </ContentSection>
+)}
+
+{section.type === 'contact' && (
+  <ContentSection>
+    {section.title && <h2>{section.title}</h2>}
+    <p>Contact form would go here</p>
+  </ContentSection>
+)} 

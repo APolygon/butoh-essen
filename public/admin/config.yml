@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Content: create {{collection}} "{{slug}}"'
+    update: 'Content: update {{collection}} "{{slug}}"'
+    delete: 'Content: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Media: upload "{{path}}"'
+    deleteMedia: 'Media: delete "{{path}}"'
+
+media_folder: "public/images"
+public_folder: "/images"
+
+local_backend: true # Enable for local development
+
+# Site settings
+site_url: https://your-site.netlify.app
+display_url: https://your-site.netlify.app
+
+collections:
+  - name: "workshop"
+    label: "Workshop Page"
+    files:
+      - file: "src/content/workshop.md"
+        label: "Workshop"
+        name: "workshop"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Date", name: "date", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Hero Image", name: "hero", widget: "image" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/content/pages/home.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Hero Section", name: "hero", widget: "object", fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+            }
+          - { label: "Content Sections", name: "sections", widget: "list", fields:
+              - { label: "Section Type", name: "type", widget: "select", options: ["text", "meta", "gallery", "contact"] }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "markdown" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+            }
+          }
