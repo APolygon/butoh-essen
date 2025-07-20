@@ -1,47 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import WorkshopMeta from '../components/WorkshopMeta.astro';
 import ContentSection from '../components/ContentSection.astro';
 import ErrorMessage from '../components/ErrorMessage.astro';
 import { getEntryBySlug } from 'astro:content';
+import { marked } from 'marked';
 
-const workshop = await getEntryBySlug('workshop', 'workshop');
-let Content;
+const home = await getEntryBySlug('pages', 'home');
 
-if (workshop) {
-  const rendered = await workshop.render();
-  Content = rendered.Content;
+// Process sections content
+let processedSections: any[] = [];
+if (home && home.data.sections) {
+  processedSections = await Promise.all(
+    home.data.sections.map(async (section: any) => {
+      if (section.type === 'text' && section.content) {
+        return {
+          ...section,
+          content: await marked(section.content)
+        };
+      }
+      return section;
+    })
+  );
 }
 ---
 
-<Layout title={workshop?.data?.title || "Butoh Workshop"}>
-  <Hero 
-    title={workshop?.data?.title || "Butoh Workshop"}
-    subtitle="Transformative Butoh Dance Experience"
-    imageSrc={workshop?.data?.hero}
-    imageAlt="Butoh Workshop"
-  />
+<Layout title={home?.data?.title || "Butoh in Essen"}>
+  {home && home.data.hero && (
+    <Hero 
+      title={home.data.hero.title || "Butoh in Essen"}
+      subtitle={home.data.hero.subtitle || "Discover the transformative power of Butoh dance"}
+      imageSrc={home.data.hero.image}
+      imageAlt="Butoh in Essen"
+    />
+  )}
   
   <div class="container">
-    {workshop && Content && (
-      <ContentSection>
-        <WorkshopMeta 
-          date={workshop.data.date}
-          location={workshop.data.location}
-        />
-        
-        <article>
-          <Content />
-        </article>
-      </ContentSection>
+    {processedSections.length > 0 && (
+      processedSections.map((section) => (
+        <ContentSection>
+          {section.type === 'text' && (
+            <div>
+              <h2>{section.title}</h2>
+              <article>
+                <Fragment set:html={section.content} />
+              </article>
+            </div>
+          )}
+        </ContentSection>
+      ))
     )}
     
-    {!workshop && (
+    {!home && (
       <ContentSection>
         <ErrorMessage 
-          title="Workshop not found"
-          message="Please check that the workshop content file exists."
+          title="Home page not found"
+          message="Please check that the home content file exists."
         />
       </ContentSection>
     )}

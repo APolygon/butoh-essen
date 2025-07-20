@@ -1,0 +1,104 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+# Local development settings
+local_backend: true
+
+# Site settings
+site_url: http://localhost:4321
+display_url: http://localhost:4321
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/content/pages/home.md"
+        label: "Home"
+        name: "home"
+        fields:
+          - label: "CMS Label"
+            name: "cmsLabel"
+            widget: "string"
+            required: false
+            hint: "Label shown in CMS interface"
+          - label: "Page Title"
+            name: "title"
+            widget: "string"
+            required: false
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            required: false
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+              - label: "Subtitle"
+                name: "subtitle"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
+          - label: "Content Sections"
+            name: "sections"
+            widget: "list"
+            required: false
+            fields:
+              - label: "Section Type"
+                name: "type"
+                widget: "select"
+                options: ["text", "meta", "gallery", "contact"]
+                required: false
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+              - label: "Content"
+                name: "content"
+                widget: "markdown"
+                required: false
+              - label: "Date"
+                name: "date"
+                widget: "string"
+                required: false
+              - label: "Location"
+                name: "location"
+                widget: "string"
+                required: false
+      - file: "src/content/pages/workshop.md"
+        label: "Workshop"
+        name: "workshop"
+        fields:
+          - label: "CMS Label"
+            name: "cmsLabel"
+            widget: "string"
+            required: false
+            hint: "Label shown in CMS interface"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+          - label: "Date"
+            name: "date"
+            widget: "string"
+            required: false
+          - label: "Location"
+            name: "location"
+            widget: "string"
+            required: false
+          - label: "Hero Image"
+            name: "hero"
+            widget: "image"
+            required: false
+          - label: "Body Content"
+            name: "body"
+            widget: "markdown"
+            required: false
+            hint: "This content will be displayed on the workshop page"

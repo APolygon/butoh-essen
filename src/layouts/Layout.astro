@@ -1,4 +1,6 @@
 ---
+import Navbar from '../components/Navbar.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -35,6 +37,7 @@ const { title, description = "Butoh Workshop in Essen - Transformative dance exp
       body {
         margin: 0;
         padding: 0;
+        padding-top: 70px; /* Account for fixed navbar */
         line-height: 1.6;
       }
       .container {
@@ -199,6 +202,7 @@ const { title, description = "Butoh Workshop in Essen - Transformative dance exp
     </style>
   </head>
   <body>
+    <Navbar />
     <slot />
     
     <!-- CMS Link (only in development) -->
