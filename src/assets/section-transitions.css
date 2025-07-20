@@ -1,0 +1,131 @@
+/* Section Transition Effects */
+/* This file contains CSS animations for smooth transitions when sections come into view */
+
+/* Base styles for sections that will have transitions */
+.section-transition {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When section is in view */
+.section-transition.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Different transition delays for staggered effects */
+.section-transition.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.section-transition.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.section-transition.delay-300 {
+  transition-delay: 0.3s;
+}
+
+.section-transition.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.section-transition.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Different animation types */
+.section-transition.slide-left {
+  transform: translateX(-50px);
+}
+
+.section-transition.slide-left.in-view {
+  transform: translateX(0);
+}
+
+.section-transition.slide-right {
+  transform: translateX(50px);
+}
+
+.section-transition.slide-right.in-view {
+  transform: translateX(0);
+}
+
+.section-transition.scale-up {
+  transform: scale(0.95) translateY(20px);
+}
+
+.section-transition.scale-up.in-view {
+  transform: scale(1) translateY(0);
+}
+
+.section-transition.fade-in {
+  opacity: 0;
+  transform: none;
+}
+
+.section-transition.fade-in.in-view {
+  opacity: 1;
+}
+
+/* Special effect for content sections */
+.content.section-transition {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.content.section-transition.in-view {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Image transitions */
+.content-image.section-transition {
+  transform: scale(0.98) translateY(20px);
+}
+
+.content-image.section-transition.in-view {
+  transform: scale(1) translateY(0);
+}
+
+/* Hero section special transition */
+.hero.section-transition {
+  transform: translateY(-20px);
+}
+
+.hero.section-transition.in-view {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-transition {
+    transform: translateY(20px);
+  }
+
+  .section-transition.slide-left,
+  .section-transition.slide-right {
+    transform: translateY(20px);
+  }
+
+  .section-transition.slide-left.in-view,
+  .section-transition.slide-right.in-view {
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .section-transition {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .section-transition.in-view {
+    opacity: 1;
+    transform: none;
+  }
+}

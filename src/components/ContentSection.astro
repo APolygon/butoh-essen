@@ -1,12 +1,27 @@
 ---
 export interface Props {
   class?: string;
+  variant?: 'default' | 'image-heavy' | 'text-only';
+  transition?: 'default' | 'slide-left' | 'slide-right' | 'scale-up' | 'fade-in' | 'none';
+  delay?: 'none' | '100' | '200' | '300' | '400' | '500';
 }
 
-const { class: className } = Astro.props;
+const { class: className, variant = 'default', transition = 'default', delay = 'none' } = Astro.props;
+
+// Build transition classes
+const transitionClasses = [];
+if (transition !== 'none') {
+  transitionClasses.push('section-transition');
+  if (transition !== 'default') {
+    transitionClasses.push(transition);
+  }
+  if (delay !== 'none') {
+    transitionClasses.push(`delay-${delay}`);
+  }
+}
 ---
 
-<div class={`content ${className || ''}`}>
+<div class={`content content-${variant} ${transitionClasses.join(' ')} ${className || ''}`}>
   <slot />
 </div>
 
@@ -18,5 +33,38 @@ const { class: className } = Astro.props;
     margin: 2rem 0;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .content-image-heavy {
+    padding: 1.5rem;
+  }
+  
+  .content-text-only {
+    padding: 2.5rem;
+  }
+  
+  /* Ensure images within content sections look good */
+  .content :global(.content-image) {
+    margin: 1.5rem 0;
+  }
+  
+  .content-image-heavy :global(.content-image) {
+    margin: 1rem 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .content {
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .content-image-heavy {
+      padding: 1rem;
+    }
+    
+    .content-text-only {
+      padding: 2rem;
+    }
   }
 </style> 

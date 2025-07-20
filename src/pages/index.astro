@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ContentSection from '../components/ContentSection.astro';
+import ContentImage from '../components/ContentImage.astro';
 import ErrorMessage from '../components/ErrorMessage.astro';
 import { getEntryBySlug } from 'astro:content';
 import { marked } from 'marked';
@@ -37,8 +38,11 @@ if (home && home.data.sections) {
   
   <div class="container">
     {processedSections.length > 0 && (
-      processedSections.map((section) => (
-        <ContentSection>
+      processedSections.map((section, index) => (
+        <ContentSection 
+          transition={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+          delay={index === 0 ? 'none' : '200'}
+        >
           {section.type === 'text' && (
             <div>
               <h2>{section.title}</h2>
@@ -50,6 +54,42 @@ if (home && home.data.sections) {
         </ContentSection>
       ))
     )}
+    
+    {/* Example image section */}
+    <ContentSection variant="image-heavy" transition="scale-up" delay="300">
+      <h2>Butoh in Action</h2>
+      <p>Experience the transformative power of Butoh through these captivating moments from our workshops and performances.</p>
+      
+      <ContentImage 
+        src="/images/hero.png" 
+        alt="Butoh dancer in expressive pose"
+        caption="A Butoh dancer exploring the boundaries of movement and expression"
+        width="800"
+        height="600"
+        transition="scale-up"
+        delay="100"
+      />
+      
+      <p>Butoh is more than just dance—it's a journey of self-discovery and artistic expression that transcends traditional boundaries.</p>
+    </ContentSection>
+    
+    {/* Test image from URL */}
+    <ContentSection variant="image-heavy" transition="fade-in" delay="400">
+      <h2>Test Image from URL</h2>
+      <p>This is a test image loaded from an external URL to demonstrate the ContentImage component's capabilities.</p>
+      
+      <ContentImage 
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center"
+        alt="Abstract dance movement"
+        caption="Abstract dance movement captured in motion - demonstrating the flexibility of our image component"
+        width="800"
+        height="600"
+        transition="fade-in"
+        delay="200"
+      />
+      
+      <p>The ContentImage component works seamlessly with both local images and external URLs, making it easy to integrate content from various sources.</p>
+    </ContentSection>
     
     {!home && (
       <ContentSection>

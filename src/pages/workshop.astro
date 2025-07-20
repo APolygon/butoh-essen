@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import WorkshopMeta from '../components/WorkshopMeta.astro';
 import ContentSection from '../components/ContentSection.astro';
+import ContentImage from '../components/ContentImage.astro';
 import ErrorMessage from '../components/ErrorMessage.astro';
 import { getEntryBySlug } from 'astro:content';
 import { marked } from 'marked';
@@ -52,20 +53,38 @@ try {
   
   <div class="container">
     {workshopData ? (
-      <ContentSection>
-        <WorkshopMeta 
-          date={workshopData.date}
-          location={workshopData.location}
-        />
+      <>
+        <ContentSection>
+          <WorkshopMeta 
+            date={workshopData.date}
+            location={workshopData.location}
+          />
+          
+          <article>
+            {bodyContent ? (
+              <Fragment set:html={bodyContent} />
+            ) : (
+              <p>No content available. Please add content through the CMS.</p>
+            )}
+          </article>
+        </ContentSection>
         
-        <article>
-          {bodyContent ? (
-            <Fragment set:html={bodyContent} />
-          ) : (
-            <p>No content available. Please add content through the CMS.</p>
-          )}
-        </article>
-      </ContentSection>
+        {/* Example workshop image section */}
+        <ContentSection variant="image-heavy">
+          <h2>Workshop Highlights</h2>
+          <p>See what participants experience in our transformative Butoh workshops.</p>
+          
+          <ContentImage 
+            src="/images/hero.png" 
+            alt="Butoh workshop participants in movement"
+            caption="Participants exploring Butoh movement techniques during a workshop session"
+            width="800"
+            height="600"
+          />
+          
+          <p>Our workshops provide a safe and supportive environment for exploring the depths of Butoh expression.</p>
+        </ContentSection>
+      </>
     ) : (
       <ContentSection>
         <ErrorMessage 
