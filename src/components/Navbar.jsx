@@ -27,32 +27,22 @@ export default function Navbar() {
     }
   };
 
-  // Debug function to log URL generation
-  const debugUrl = (locale) => {
-    if (typeof window !== "undefined") {
-      let url;
-      const currentPath = window.location.pathname;
-
-      if (locale === "de") {
-        // Remove /en/ prefix if present, and remove /de/ prefix if present
-        url = currentPath.replace(/^\/en/, "").replace(/^\/de/, "");
-        // Ensure we don't have an empty path
-        if (url === "") url = "/";
-      } else {
-        // For English, remove /de/ prefix if present, then add /en/ prefix
-        let cleanPath = currentPath.replace(/^\/de/, "");
-        // If the path doesn't already start with /en/, add it
-        if (!cleanPath.startsWith("/en")) {
-          url = `/en${cleanPath}`;
-        } else {
-          url = cleanPath;
-        }
-      }
-
-      console.log(`Switching to ${locale}: ${currentPath} → ${url}`);
-      return url;
+  // Optimized language switching with direct hrefs
+  const getLanguageUrl = (locale) => {
+    if (typeof window === "undefined") {
+      return locale === "de" ? "/" : "/en/";
     }
-    return locale === "de" ? "/" : "/en/";
+
+    const currentPath = window.location.pathname;
+
+    if (locale === "de") {
+      // For German, remove /en/ prefix and any /de/ prefix
+      return currentPath.replace(/^\/en/, "").replace(/^\/de/, "") || "/";
+    } else {
+      // For English, remove /de/ prefix and ensure /en/ prefix
+      const cleanPath = currentPath.replace(/^\/de/, "");
+      return cleanPath.startsWith("/en") ? cleanPath : `/en${cleanPath}`;
+    }
   };
 
   // Close language dropdown when clicking outside
@@ -72,14 +62,12 @@ export default function Navbar() {
     };
   }, []);
 
-  const getLocalizedPath = (path) => {
-    if (typeof window === "undefined") return path;
-    // For German (default), use path as is
-    if (currentLang === "de") {
-      return path;
+  // Optimized navigation paths
+  const getNavPath = (path) => {
+    if (typeof window === "undefined") {
+      return currentLang === "de" ? path : `/en${path}`;
     }
-    // For English, add language prefix
-    return `/en${path}`;
+    return currentLang === "de" ? path : `/en${path}`;
   };
 
   return (
@@ -87,7 +75,7 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-brand">
-            <a href={getLocalizedPath("/")} className="brand-link">
+            <a href={getNavPath("/")} className="brand-link">
               <span className="brand-text">Butoh</span>
               <span className="brand-subtitle">Essen</span>
             </a>
@@ -95,21 +83,21 @@ export default function Navbar() {
           {/* Desktop menu */}
           <div className="nav-menu" style={{ left: menuOpen ? 0 : undefined }}>
             <a
-              href={getLocalizedPath("/")}
+              href={getNavPath("/")}
               className="nav-link"
               onClick={handleClose}
             >
               {t("nav.workshops")}
             </a>
             <a
-              href={getLocalizedPath("/contact")}
+              href={getNavPath("/contact")}
               className="nav-link"
               onClick={handleClose}
             >
               {t("nav.contact")}
             </a>
             <a
-              href={getLocalizedPath("/impressum")}
+              href={getNavPath("/impressum")}
               className="nav-link"
               onClick={handleClose}
             >
@@ -131,14 +119,14 @@ export default function Navbar() {
               {langMenuOpen && (
                 <div className="lang-dropdown">
                   <a
-                    href={debugUrl("de")}
+                    href={getLanguageUrl("de")}
                     className="lang-option"
                     onClick={() => setLangMenuOpen(false)}
                   >
                     🇩🇪 {t("nav.language.de")}
                   </a>
                   <a
-                    href={debugUrl("en")}
+                    href={getLanguageUrl("en")}
                     className="lang-option"
                     onClick={() => setLangMenuOpen(false)}
                   >
