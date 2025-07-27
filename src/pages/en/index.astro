@@ -4,10 +4,14 @@ import Hero from '../../components/Hero.jsx';
 import ContentSection from '../../components/ContentSection.jsx';
 import ErrorMessage from '../../components/ErrorMessage.astro';
 import GoogleMaps from '../../components/GoogleMaps.jsx';
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { marked } from 'marked';
 
-const workshop = await getEntryBySlug('pages', 'en/workshop') as any;
+const workshop = await getEntry('pages', 'en/workshop') as any;
+
+console.log('DEBUG: English Workshop page - workshop entry:', workshop);
+console.log('DEBUG: English Workshop page - workshop data:', workshop?.data);
+console.log('DEBUG: English Workshop page - workshop hero:', workshop?.data?.hero);
 
 // Process sections content
 let processedSections: any[] = [];

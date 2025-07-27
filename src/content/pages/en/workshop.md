@@ -7,7 +7,7 @@ backgroundColor: "rgb(255, 255, 255)"
 hero:
   title: "Molecular Dance Workshop"
   subtitle: "with Maruska Ronchi"
-  image: "images/Maruska_Ronchi.jpg"
+  image: "/images/Maruska_Ronchi.jpg"
 sections:
   - type: "text"
     title: "Molecular Dance Workshop with Maruska Ronchi"
@@ -104,6 +104,4 @@ sections:
 
       **Contact for registration:**  
       butoh@gmx.net (Heidi L.)
-
-      **[Register now →](mailto:butoh@gmx.net)"
 ---
