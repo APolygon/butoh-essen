@@ -1,4 +1,62 @@
 ---
-// Redirect to default language (German)
-return Astro.redirect('/de/impressum');
---- 
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.jsx';
+import ContentSection from '../components/ContentSection.jsx';
+import { getEntryBySlug } from 'astro:content';
+import { marked } from 'marked';
+
+const impressum = await getEntryBySlug('pages', 'impressum') as any;
+
+console.log('DEBUG: Impressum page - impressum entry:', impressum);
+console.log('DEBUG: Impressum page - impressum data:', impressum?.data);
+console.log('DEBUG: Impressum page - impressum sections:', impressum?.data?.sections);
+
+// Process sections content
+let processedSections: any[] = [];
+if (impressum && impressum.data.sections) {
+  processedSections = await Promise.all(
+    impressum.data.sections.map(async (section: any) => {
+      if (section.type === 'text' && section.content) {
+        return {
+          ...section,
+          content: marked(section.content)
+        };
+      }
+      return section;
+    })
+  );
+}
+
+console.log('DEBUG: Impressum page - processedSections:', processedSections);
+---
+
+<Layout title={impressum?.data?.title || "Impressum"}>
+  {impressum?.data?.hero && (
+    <Hero 
+      title={impressum.data.hero.title}
+      subtitle={impressum.data.hero.subtitle}
+      imageSrc={impressum.data.hero.image}
+    />
+  )}
+  
+  <div class="container">
+    {processedSections.map((section: any, index: number) => {
+      console.log(`DEBUG: Section ${index}:`, section);
+      console.log(`DEBUG: Section ${index} mapsUrl:`, section.mapsUrl);
+      console.log(`DEBUG: Section ${index} type:`, section.type);
+      
+      return (
+        <ContentSection
+          content={section.content}
+          title={section.title}
+          textColor={section.textColor}
+          backgroundColor={section.backgroundColor}
+          imagePath={section.imagePath}
+          imagePosition={section.imagePosition || "right"}
+          imageAlt={section.imageAlt || ""}
+          mapsUrl={section.mapsUrl || ""}
+        />
+      );
+    })}
+  </div>
+</Layout> 

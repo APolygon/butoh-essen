@@ -8,6 +8,8 @@ backgroundColor: "rgb(255, 255, 255)"
 hero:
 title: "Legal Notice"
 subtitle: "Legal Information"
+image: "/images/wolken.JPG"
+
 sections:
 
 - type: "text"

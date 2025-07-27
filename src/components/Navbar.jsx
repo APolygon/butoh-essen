@@ -31,18 +31,25 @@ export default function Navbar() {
   const debugUrl = (locale) => {
     if (typeof window !== "undefined") {
       let url;
+      const currentPath = window.location.pathname;
+
       if (locale === "de") {
-        // Remove /en/ prefix if present, otherwise keep as is
-        url = window.location.pathname.replace(/^\/en/, "");
+        // Remove /en/ prefix if present, and remove /de/ prefix if present
+        url = currentPath.replace(/^\/en/, "").replace(/^\/de/, "");
+        // Ensure we don't have an empty path
+        if (url === "") url = "/";
       } else {
-        // Add /en/ prefix if not present
-        url = window.location.pathname.startsWith("/en")
-          ? window.location.pathname
-          : `/en${window.location.pathname}`;
+        // For English, remove /de/ prefix if present, then add /en/ prefix
+        let cleanPath = currentPath.replace(/^\/de/, "");
+        // If the path doesn't already start with /en/, add it
+        if (!cleanPath.startsWith("/en")) {
+          url = `/en${cleanPath}`;
+        } else {
+          url = cleanPath;
+        }
       }
-      console.log(
-        `Switching to ${locale}: ${window.location.pathname} → ${url}`
-      );
+
+      console.log(`Switching to ${locale}: ${currentPath} → ${url}`);
       return url;
     }
     return locale === "de" ? "/" : "/en/";

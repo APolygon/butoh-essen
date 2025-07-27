@@ -1,4 +1,73 @@
 ---
-// Redirect to default language (German)
-return Astro.redirect('/de/contact');
---- 
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.jsx';
+import ContentSection from '../components/ContentSection.jsx';
+import { getEntryBySlug } from 'astro:content';
+import { marked } from 'marked';
+
+const contact = await getEntryBySlug('pages', 'contact') as any;
+
+console.log('DEBUG: Contact page - contact entry:', contact);
+console.log('DEBUG: Contact page - contact data:', contact?.data);
+console.log('DEBUG: Contact page - contact sections:', contact?.data?.sections);
+
+// Process sections content
+let processedSections: any[] = [];
+if (contact && contact.data.sections) {
+  processedSections = await Promise.all(
+    contact.data.sections.map(async (section: any) => {
+      if (section.type === 'text' && section.content) {
+        return {
+          ...section,
+          content: await marked(section.content)
+        };
+      }
+      return section;
+    })
+  );
+}
+
+console.log('DEBUG: Contact page - processedSections:', processedSections);
+---
+
+<Layout title={contact?.data?.title || "Kontakt"}>
+  {contact && contact.data.hero && (
+    <Hero 
+      title={contact.data.hero.title || "Kontakt"}
+      subtitle={contact.data.hero.subtitle || "Kontaktiere uns für Workshops und weitere Informationen"}
+      imageSrc={contact.data.hero.image}
+      imageAlt="Kontakt"
+    />
+  )}
+  
+  <div class="container" style="padding: 0 1rem;">
+    {processedSections.length > 0 && (
+      processedSections.map((section, index) => {
+        console.log(`DEBUG: Section ${index}:`, section);
+        console.log(`DEBUG: Section ${index} mapsUrl:`, section.mapsUrl);
+        console.log(`DEBUG: Section ${index} type:`, section.type);
+        return (
+          <ContentSection 
+            content={section.content}
+            title={section.title}
+            textColor={section.textColor || "#000"}
+            backgroundColor={section.backgroundColor || "rgb(255, 255, 255)"}
+            imagePath={section.imagePath}
+            imagePosition={section.imagePosition || "right"}
+            imageAlt={section.imageAlt || ""}
+            mapsUrl={section.mapsUrl || ""}
+          />
+        );
+      })
+    )}
+    
+    {!contact && (
+      <ContentSection 
+        content="Bitte überprüfen Sie, dass die Kontakt-Inhaltsdatei existiert."
+        title="Kontaktseite nicht gefunden"
+        textColor="#000"
+        backgroundColor="rgb(255, 255, 255)"
+      />
+    )}
+  </div>
+</Layout> 

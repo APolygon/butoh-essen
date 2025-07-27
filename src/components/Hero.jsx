@@ -48,9 +48,7 @@ export default function Hero({
             color: "white",
             opacity: "0.8",
           }}
-        >
-          Hero Image
-        </div>
+        ></div>
       )}
       <div
         style={{
