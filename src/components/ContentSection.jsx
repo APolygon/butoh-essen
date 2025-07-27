@@ -1,0 +1,216 @@
+import React from "react";
+import { marked } from "marked";
+import GoogleMaps from "./GoogleMaps.jsx";
+
+/**
+ * Props:
+ * - content: string (markdown content)
+ * - title?: string (optional title)
+ * - className?: string (optional additional classes)
+ * - textColor?: string (optional text color, defaults to "#000")
+ * - backgroundColor?: string (optional background color, defaults to "rgb(255, 255, 255)")
+ * - imagePath?: string (optional image path)
+ * - imagePosition?: "left" | "right" (optional, defaults to "right")
+ * - imageAlt?: string (optional image alt text)
+ * - mapsUrl?: string (optional Google Maps URL)
+ */
+export default function ContentSection({
+  content,
+  title,
+  className = "",
+  textColor = "#000",
+  backgroundColor = "rgb(255, 255, 255)",
+  imagePath = "",
+  imagePosition = "right",
+  imageAlt = "",
+  mapsUrl = "",
+  noShadow = false,
+}) {
+  const hasImage = imagePath && imagePath.trim() !== "";
+  const hasMap = mapsUrl && mapsUrl.trim() !== "";
+
+  // Color shortcuts
+  const getColor = (color) => {
+    if (color === "black") return "rgb(0, 0, 0)";
+    if (color === "white") return "rgb(255, 255, 255)";
+    return color;
+  };
+
+  // Check if it's a color combination shortcut
+  let finalTextColor = textColor;
+  let finalBackgroundColor = backgroundColor;
+
+  if (textColor === "black-on-white") {
+    finalTextColor = "rgb(0, 0, 0)";
+    finalBackgroundColor = "rgb(255, 255, 255)";
+  } else if (textColor === "white-on-black") {
+    finalTextColor = "rgb(255, 255, 255)";
+    finalBackgroundColor = "rgb(0, 0, 0)";
+  } else {
+    finalTextColor = getColor(textColor);
+    finalBackgroundColor = getColor(backgroundColor);
+  }
+
+  console.log("ContentSection props:", {
+    content,
+    title,
+    mapsUrl,
+    hasMap,
+    hasImage,
+  });
+
+  return (
+    <div
+      className={`${className}`}
+      style={{
+        background: finalBackgroundColor,
+        borderRadius: "0px",
+        padding: "3rem",
+        backdropFilter: "blur(10px)",
+        marginBottom: "0",
+      }}
+    >
+      {title && (
+        <h2
+          style={{
+            fontSize: "2rem",
+            fontWeight: "600",
+            marginBottom: "1.5rem",
+            color: finalTextColor,
+            borderBottom: `2px solid ${finalTextColor}`,
+            paddingBottom: "0.5rem",
+          }}
+        >
+          {title}
+        </h2>
+      )}
+
+      <div
+        style={{
+          display: hasImage || hasMap ? "flex" : "block",
+          flexDirection: hasImage || hasMap ? "row" : "block",
+          gap: hasImage || hasMap ? "2rem" : "0",
+          alignItems: "stretch",
+        }}
+      >
+        {/* Map container */}
+        {hasMap && (
+          <div
+            style={{
+              flex: hasImage ? "1 1 50%" : "1 1 100%",
+              order: imagePosition === "left" ? 2 : 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "stretch",
+              height: hasImage ? "400px" : "400px",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {console.log("Rendering map with URL:", mapsUrl)}
+              {/* Direct iframe instead of GoogleMaps component */}
+              <iframe
+                src={mapsUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: "8px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Image container - can be used with maps too */}
+        {hasImage && (
+          <div
+            style={{
+              flex: "1 1 50%",
+              order: imagePosition === "left" ? 1 : 2,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "stretch",
+              height: hasMap ? "400px" : "auto",
+            }}
+          >
+            <img
+              src={imagePath}
+              alt={imageAlt}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "8px",
+                ...(noShadow
+                  ? {}
+                  : { boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)" }),
+              }}
+            />
+          </div>
+        )}
+
+        {/* Content container - only show if there's content or if it's not a map-only section */}
+        {(content || (!hasMap && !hasImage)) && (
+          <div
+            style={{
+              flex: hasImage || hasMap ? "1 1 50%" : "none",
+              order: imagePosition === "left" ? 2 : 1,
+              lineHeight: "1.8",
+              color: finalTextColor,
+              fontSize: "1.1rem",
+            }}
+            dangerouslySetInnerHTML={{ __html: marked(content || "") }}
+          />
+        )}
+      </div>
+
+      {/* Mobile responsive styles */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          div[style*="flex-direction: row"] {
+            flex-direction: column !important;
+          }
+          div[style*="order: 1"],
+          div[style*="order: 2"] {
+            order: unset !important;
+          }
+          div[style*="flex: 1 1 50%"] {
+            flex: 1 1 auto !important;
+            margin-bottom: 1rem;
+          }
+          img[style*="height: 100%"] {
+            height: auto !important;
+            max-height: 400px;
+          }
+          iframe[style*="border-radius: 8px"] {
+            height: 300px !important;
+          }
+        }
+
+        /* Override GoogleMaps component styles */
+        :global(.bg-white\\/10) {
+          background: transparent !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
+        }
+
+        :global(.aspect-video) {
+          aspect-ratio: auto !important;
+          height: 100% !important;
+        }
+
+        :global(.bg-gray-800) {
+          background: transparent !important;
+          height: 100% !important;
+        }
+      `}</style>
+    </div>
+  );
+}

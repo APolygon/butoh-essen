@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.jsx';
+import ContentSection from '../../components/ContentSection.jsx';
+import ErrorMessage from '../../components/ErrorMessage.astro';
+import GoogleMaps from '../../components/GoogleMaps.jsx';
+import { getEntryBySlug } from 'astro:content';
+import { marked } from 'marked';
+
+const workshop = await getEntryBySlug('pages', 'en/workshop') as any;
+
+// Process sections content
+let processedSections: any[] = [];
+if (workshop && workshop.data.sections) {
+  processedSections = await Promise.all(
+    workshop.data.sections.map(async (section: any) => {
+      if (section.type === 'text' && section.content) {
+        return {
+          ...section,
+          content: await marked(section.content)
+        };
+      }
+      return section;
+    })
+  );
+}
+---
+
+<Layout title={workshop?.data?.title || "Butoh Workshops"}>
+  {workshop && workshop.data.hero && (
+    <Hero 
+      title={workshop.data.hero.title || "Butoh Workshops"}
+      subtitle={workshop.data.hero.subtitle || "Discover the transformative power of Butoh dance"}
+      imageSrc={workshop.data.hero.image}
+      imageAlt="Butoh Workshops"
+    />
+  )}
+  
+  <div class="container" style="padding: 0 1rem;">
+    {processedSections.length > 0 && (
+      processedSections.map((section, index) => (
+        <ContentSection 
+          content={section.content}
+          title={section.title}
+          textColor={section.textColor || "#000"}
+          backgroundColor={section.backgroundColor || "rgb(255, 255, 255)"}
+          imagePath={section.imagePath}
+          imagePosition={section.imagePosition || "right"}
+          imageAlt={section.imageAlt || ""}
+          mapsUrl={section.mapsUrl || ""}
+        />
+      ))
+    )}
+    
+    {!workshop && (
+      <ContentSection 
+        content="Please check that the workshop content file exists."
+        title="Workshop page not found"
+        textColor="#000"
+        backgroundColor="rgb(255, 255, 255)"
+      />
+    )}
+  </div>
+</Layout> 
