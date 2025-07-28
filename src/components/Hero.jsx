@@ -8,6 +8,7 @@ export default function Hero({
 }) {
   return (
     <div
+      className="hero-container"
       style={{
         position: "relative",
         width: "calc(100vw - 4rem)",
@@ -51,6 +52,7 @@ export default function Hero({
         ></div>
       )}
       <div
+        className="hero-overlay"
         style={{
           position: "absolute",
           top: "0",
@@ -68,6 +70,7 @@ export default function Hero({
         }}
       >
         <h1
+          className="hero-title"
           style={{
             fontSize: "4.5rem",
             margin: "0 0 1rem 0",
@@ -78,6 +81,7 @@ export default function Hero({
           {title}
         </h1>
         <p
+          className="hero-subtitle"
           style={{
             fontSize: "2.3rem",
             opacity: "0.9",
