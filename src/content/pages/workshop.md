@@ -5,8 +5,8 @@ lang: "de"
 textColor: "#000"
 backgroundColor: "rgb(255, 255, 255)"
 hero:
-  title: "Molecular Dance Workshop"
-  subtitle: "mit Maruska Ronchi"
+  title: "Molecular Dance Workshop mit Maruska Ronchi"
+  subtitle: "07.- 09. November 2025"
   image: "images/Maruska_Ronchi.jpg"
 sections:
   - type: "text"
@@ -40,31 +40,13 @@ sections:
       Sie reist um die Welt und teilt ihren Tanz und ihre Praktiken durch Performances, Workshops und die Zusammenarbeit mit internationalen Künstlern. Sie präsentiert ihre Werke in vielen Ländern Europas, sowie in Kanada, Mauritius und Japan.
 
   - type: "text"
-    title: "Für wen ist dieser Workshop"
-    imagePath: "/images/people.png"
-    imagePosition: "left"
-    imageAlt: "Maruska Ronchi - Butoh dancer and choreographer"
-    textColor: "black"
-    backgroundColor: "white"
+    title: "Zeit und Ort"
     content: |
-      - **Alle Erfahrungsstufen willkommen** - Für den Workshop sind keine tänzerischen Vorkenntnisse erforderlich
-      - Tänzer und Nicht-Tänzer
-      - Alle, die sich für körperlichen Ausdruck interessieren
-      - Menschen, die innere Prozesse durch Bewegung erforschen möchten
-      - Experimentierfreudige Menschen, die sich bewegen können
-
-  - type: "text"
-    title: "Was solltest du mitbringen?"
-    imagePath: "/images/was-mitbringen.png"
-    imagePosition: "left"
-    imageAlt: "Was mitbringen"
-    textColor: "white"
-    backgroundColor: "black"
-    content: |
-      - Bequeme Kleidung (dunkle Farben bevorzugt)
-      - Warme Socken oder Tanzschuhe
-      - Offenheit für neue Erfahrungen
-      - Eine Matte oder Decke (falls vorhanden)
+      - 📅 **Freitag, 07.- Sonntag, 09. November 2025**
+      - ⏰ Freitag, 07.11. | 17:00 - 20:00 Uhr  
+      - ⏰ Samstag, 08.11  | 11:00 - 18:00 Uhr (1 Std. Pause)  
+      - ⏰ Sonntag, 09.11. | 11:00 - 18:00 Uhr (1 Std. Pause)  
+      - 📍 Centro Flamenco Maria del Mar, Ruhrtalstr. 33a, 45239 Essen
 
   - type: "text"
     title: "Location & Anreise"
@@ -92,6 +74,33 @@ sections:
     imagePosition: "left"
     imageAlt: "Centro Flamenco Maria del Mar - Workshop location"
     mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.3466940305034!2d6.989697076642!3d51.383168319771265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8c4aefe795181%3A0xe5ba95fb8afa786a!2sCentro%20Flamenco%20Mar%C3%ADa%20del%20Mar!5e1!3m2!1sen!2sde!4v1753594603948!5m2!1sen!2sde"
+
+  - type: "text"
+    title: "Für wen ist dieser Workshop"
+    imagePath: "/images/people.png"
+    imagePosition: "left"
+    imageAlt: "Maruska Ronchi - Butoh dancer and choreographer"
+    textColor: "black"
+    backgroundColor: "white"
+    content: |
+      - **Alle Erfahrungsstufen willkommen** - Für den Workshop sind keine tänzerischen Vorkenntnisse erforderlich
+      - Tänzer und Nicht-Tänzer
+      - Alle, die sich für körperlichen Ausdruck interessieren
+      - Menschen, die innere Prozesse durch Bewegung erforschen möchten
+      - Experimentierfreudige Menschen, die sich bewegen können
+
+  - type: "text"
+    title: "Was solltest du mitbringen?"
+    imagePath: "/images/was-mitbringen.png"
+    imagePosition: "left"
+    imageAlt: "Was mitbringen"
+    textColor: "white"
+    backgroundColor: "black"
+    content: |
+      - Bequeme Kleidung (dunkle Farben bevorzugt)
+      - Warme Socken oder Tanzschuhe
+      - Offenheit für neue Erfahrungen
+      - Eine Matte oder Decke (falls vorhanden)
 
   - type: "text"
     title: "Anmeldung und Preise"
