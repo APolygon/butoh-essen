@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ContentSection Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .content-section-container {
+    flex-direction: column !important;
+  }
+
+  .content-section-map,
+  .content-section-image,
+  .content-section-text {
+    flex: 1 1 auto !important;
+    order: unset !important;
+    margin-bottom: 1rem;
+  }
+
+  .content-section-image img {
+    height: auto !important;
+    max-height: 400px;
+  }
+
+  .content-section-map iframe {
+    height: 300px !important;
+  }
+
+  .content-section {
+    padding: 2rem !important;
+  }
+}

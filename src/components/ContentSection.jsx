@@ -61,7 +61,7 @@ export default function ContentSection({
 
   return (
     <div
-      className={`${className}`}
+      className={`content-section ${className}`}
       style={{
         background: finalBackgroundColor,
         borderRadius: "0px",
@@ -86,6 +86,7 @@ export default function ContentSection({
       )}
 
       <div
+        className="content-section-container"
         style={{
           display: hasImage || hasMap ? "flex" : "block",
           flexDirection: hasImage || hasMap ? "row" : "block",
@@ -96,6 +97,7 @@ export default function ContentSection({
         {/* Map container */}
         {hasMap && (
           <div
+            className="content-section-map"
             style={{
               flex: hasImage ? "1 1 50%" : "1 1 100%",
               order: imagePosition === "left" ? 2 : 1,
@@ -131,6 +133,7 @@ export default function ContentSection({
         {/* Image container - can be used with maps too */}
         {hasImage && (
           <div
+            className="content-section-image"
             style={{
               flex: "1 1 50%",
               order: imagePosition === "left" ? 1 : 2,
@@ -159,6 +162,7 @@ export default function ContentSection({
         {/* Content container - only show if there's content or if it's not a map-only section */}
         {(content || (!hasMap && !hasImage)) && (
           <div
+            className="content-section-text"
             style={{
               flex: hasImage || hasMap ? "1 1 50%" : "none",
               order: imagePosition === "left" ? 2 : 1,
@@ -170,47 +174,6 @@ export default function ContentSection({
           />
         )}
       </div>
-
-      {/* Mobile responsive styles */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          div[style*="flex-direction: row"] {
-            flex-direction: column !important;
-          }
-          div[style*="order: 1"],
-          div[style*="order: 2"] {
-            order: unset !important;
-          }
-          div[style*="flex: 1 1 50%"] {
-            flex: 1 1 auto !important;
-            margin-bottom: 1rem;
-          }
-          img[style*="height: 100%"] {
-            height: auto !important;
-            max-height: 400px;
-          }
-          iframe[style*="border-radius: 8px"] {
-            height: 300px !important;
-          }
-        }
-
-        /* Override GoogleMaps component styles */
-        :global(.bg-white\\/10) {
-          background: transparent !important;
-          padding: 0 !important;
-          border-radius: 0 !important;
-        }
-
-        :global(.aspect-video) {
-          aspect-ratio: auto !important;
-          height: 100% !important;
-        }
-
-        :global(.bg-gray-800) {
-          background: transparent !important;
-          height: 100% !important;
-        }
-      `}</style>
     </div>
   );
 }
