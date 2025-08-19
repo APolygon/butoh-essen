@@ -31,11 +31,14 @@ console.log('DEBUG: Contact page - processedSections:', processedSections);
 ---
 
 <Layout title={contact?.data?.title || "Kontakt"}>
+  {contact?.data?.hero?.image && (
+    <link slot="head" rel="preload" as="image" href={(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)} fetchpriority="high" />
+  )}
   {contact && contact.data.hero && (
     <Hero 
       title={contact.data.hero.title || "Kontakt"}
       subtitle={contact.data.hero.subtitle || "Kontaktiere uns für Workshops und weitere Informationen"}
-      imageSrc={contact.data.hero.image}
+      imageSrc={(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}
       imageAlt="Kontakt"
     />
   )}

@@ -31,11 +31,14 @@ if (workshop && workshop.data.sections) {
 ---
 
 <Layout title={workshop?.data?.title || "Butoh Workshops"}>
+  {workshop?.data?.hero?.image && (
+    <link slot="head" rel="preload" as="image" href={(workshop.data.hero.image?.startsWith('/') ? workshop.data.hero.image : `/${workshop.data.hero.image}`)} fetchpriority="high" />
+  )}
   {workshop && workshop.data.hero && (
     <Hero 
       title={workshop.data.hero.title || "Butoh Workshops"}
       subtitle={workshop.data.hero.subtitle || "Discover the transformative power of Butoh dance"}
-      imageSrc={workshop.data.hero.image}
+      imageSrc={(workshop.data.hero.image?.startsWith('/') ? workshop.data.hero.image : `/${workshop.data.hero.image}`)}
       imageAlt="Butoh Workshops"
     />
   )}

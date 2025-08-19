@@ -31,11 +31,14 @@ console.log('DEBUG: Impressum page - processedSections:', processedSections);
 ---
 
 <Layout title={impressum?.data?.title || "Impressum"}>
+  {impressum?.data?.hero?.image && (
+    <link slot="head" rel="preload" as="image" href={(impressum.data.hero.image?.startsWith('/') ? impressum.data.hero.image : `/${impressum.data.hero.image}`)} fetchpriority="high" />
+  )}
   {impressum?.data?.hero && (
     <Hero 
       title={impressum.data.hero.title}
       subtitle={impressum.data.hero.subtitle}
-      imageSrc={impressum.data.hero.image}
+      imageSrc={(impressum.data.hero.image?.startsWith('/') ? impressum.data.hero.image : `/${impressum.data.hero.image}`)}
     />
   )}
   

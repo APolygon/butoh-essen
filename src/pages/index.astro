@@ -33,11 +33,14 @@ console.log('DEBUG: Workshop page - processedSections:', processedSections);
 ---
 
 <Layout title={workshop?.data?.title || "Butoh Workshops"}>
+  {workshop?.data?.hero?.image && (
+    <link slot="head" rel="preload" as="image" href={(workshop.data.hero.image?.startsWith('/') ? workshop.data.hero.image : `/${workshop.data.hero.image}`)} fetchpriority="high" />
+  )}
   {workshop && workshop.data.hero && (
     <Hero 
       title={workshop.data.hero.title || "Butoh Workshops"}
       subtitle={workshop.data.hero.subtitle || "Entdecke die transformative Kraft des Butoh-Tanzes"}
-      imageSrc={workshop.data.hero.image}
+      imageSrc={(workshop.data.hero.image?.startsWith('/') ? workshop.data.hero.image : `/${workshop.data.hero.image}`)}
       imageAlt="Butoh Workshops"
     />
   )}

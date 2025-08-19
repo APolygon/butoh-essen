@@ -20,18 +20,15 @@ export default function Hero({
         <img
           src={imageSrc}
           alt={imageAlt}
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            background: "linear-gradient(45deg, #667eea, #764ba2)",
+            display: "block",
             borderRadius: "0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1.5rem",
-            color: "white",
-            opacity: "0.8",
           }}
         />
       ) : (
