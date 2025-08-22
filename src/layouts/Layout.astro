@@ -451,6 +451,66 @@ const lang = getLangFromUrl(Astro.url);
       </div>
     )}
     
-    <script src="/assets/section-transitions.js"></script>
+    <script is:inline>
+      class SectionTransitions {
+        constructor() {
+          this.observer = null;
+          this.init();
+        }
+        init() {
+          if (!("IntersectionObserver" in window)) {
+            this.fallback();
+            return;
+          }
+          this.observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in-view");
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+          );
+          this.observeElements();
+        }
+        observeElements() {
+          const elements = document.querySelectorAll(".section-transition");
+          elements.forEach((element) => {
+            this.observer.observe(element);
+          });
+        }
+        fallback() {
+          const elements = document.querySelectorAll(".section-transition");
+          elements.forEach((element) => {
+            element.classList.add("in-view");
+          });
+        }
+        addElement(element) {
+          if (this.observer) {
+            this.observer.observe(element);
+          } else {
+            element.classList.add("in-view");
+          }
+        }
+        removeElement(element) {
+          if (this.observer) {
+            this.observer.unobserve(element);
+          }
+        }
+        destroy() {
+          if (this.observer) {
+            this.observer.disconnect();
+          }
+        }
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+          window.sectionTransitions = new SectionTransitions();
+        });
+      } else {
+        window.sectionTransitions = new SectionTransitions();
+      }
+    </script>
   </body>
 </html>
