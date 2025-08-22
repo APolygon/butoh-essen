@@ -13,24 +13,13 @@ const {
   imageAlt = "Hero Image" 
 } = Astro.props;
 
-// Build responsive sources; use Netlify Image CDN in production
+// Use original image paths to avoid CDN 400s in production
 const normalizedSrc = imageSrc ? (imageSrc.startsWith('/') ? imageSrc : `/${imageSrc}`) : undefined;
-const responsiveWidths = [800, 1200, 1600, 1920];
-const isProd = import.meta.env.PROD;
-const toNetlify = (url: string, w: number, format?: string) => `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=inside${format ? `&f=${format}` : ''}&q=70`;
-const avifSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'avif') : normalizedSrc} ${w}w`).join(', ') : '';
-const webpSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'webp') : normalizedSrc} ${w}w`).join(', ') : '';
-const jpegSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'jpeg') : normalizedSrc} ${w}w`).join(', ') : '';
-const fallbackSrc = normalizedSrc ? (isProd ? toNetlify(normalizedSrc, 1920, 'jpeg') : normalizedSrc) : undefined;
 ---
 
 <div class="hero-container">
   {normalizedSrc ? (
-    <picture>
-      <source type="image/avif" srcset={avifSrcset} sizes="100vw" />
-      <source type="image/webp" srcset={webpSrcset} sizes="100vw" />
-      <img src={fallbackSrc} srcset={jpegSrcset} sizes="100vw" alt={imageAlt} class="hero-image" loading="eager" fetchpriority="high" decoding="sync" style="object-position: center;" />
-    </picture>
+    <img src={normalizedSrc} alt={imageAlt} class="hero-image" loading="eager" fetchpriority="high" decoding="sync" style="object-position: center;" />
   ) : (
     <div class="hero-image">Hero Image</div>
   )}

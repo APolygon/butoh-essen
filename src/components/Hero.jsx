@@ -11,51 +11,7 @@ export default function Hero({
       ? imageSrc
       : `/${imageSrc}`
     : undefined;
-  const responsiveWidths = [800, 1200, 1600, 1920];
-  const isProd =
-    typeof import.meta !== "undefined" &&
-    import.meta &&
-    import.meta.env &&
-    import.meta.env.PROD;
-  const toNetlify = (url, w, format) =>
-    `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=inside${
-      format ? `&f=${format}` : ""
-    }&q=70`;
-  const avifSrcset = normalizedSrc
-    ? responsiveWidths
-        .map(
-          (w) =>
-            `${
-              isProd ? toNetlify(normalizedSrc, w, "avif") : normalizedSrc
-            } ${w}w`
-        )
-        .join(", ")
-    : "";
-  const webpSrcset = normalizedSrc
-    ? responsiveWidths
-        .map(
-          (w) =>
-            `${
-              isProd ? toNetlify(normalizedSrc, w, "webp") : normalizedSrc
-            } ${w}w`
-        )
-        .join(", ")
-    : "";
-  const jpegSrcset = normalizedSrc
-    ? responsiveWidths
-        .map(
-          (w) =>
-            `${
-              isProd ? toNetlify(normalizedSrc, w, "jpeg") : normalizedSrc
-            } ${w}w`
-        )
-        .join(", ")
-    : "";
-  const fallbackSrc = normalizedSrc
-    ? isProd
-      ? toNetlify(normalizedSrc, 1920, "jpeg")
-      : normalizedSrc
-    : undefined;
+  const isProd = false;
   return (
     <div
       className="hero-container"
@@ -67,27 +23,21 @@ export default function Hero({
       }}
     >
       {normalizedSrc ? (
-        <picture>
-          <source type="image/avif" srcSet={avifSrcset} sizes="100vw" />
-          <source type="image/webp" srcSet={webpSrcset} sizes="100vw" />
-          <img
-            src={fallbackSrc}
-            srcSet={jpegSrcset}
-            sizes="100vw"
-            alt={imageAlt}
-            loading="eager"
-            decoding="sync"
-            fetchpriority="high"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-              borderRadius: "0",
-            }}
-          />
-        </picture>
+        <img
+          src={normalizedSrc}
+          alt={imageAlt}
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
+            borderRadius: "0",
+          }}
+        />
       ) : (
         <div
           style={{
