@@ -64,3 +64,8 @@
     font-size: 1.2rem !important;
   }
 }
+
+/* Accent utility used inside hero titles (works in React and Astro hero) */
+.accent {
+  color: #667eea;
+}

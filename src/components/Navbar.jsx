@@ -76,7 +76,7 @@ export default function Navbar() {
         <div className="nav-container">
           <div className="nav-brand">
             <a href={getNavPath("/")} className="brand-link">
-              <span className="brand-text">Butoh</span>
+              <span className="brand-text">ButohSpirit</span>
               <span className="brand-subtitle">Essen</span>
             </a>
           </div>

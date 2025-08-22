@@ -19,7 +19,7 @@ sections:
     content: |
       **Butoh Essen**
 
-      **Kontaktperson:** Heidi L.  
+      **Kontaktperson:** Heidi  
       **Email:** butoh@gmx.net  
       **Ort:** Essen, Deutschland
 

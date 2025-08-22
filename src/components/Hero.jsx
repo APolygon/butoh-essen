@@ -82,6 +82,7 @@ export default function Hero({
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              objectPosition: "center",
               display: "block",
               borderRadius: "0",
             }}
@@ -125,18 +126,19 @@ export default function Hero({
         <h1
           className="hero-title"
           style={{
-            fontSize: "4.5rem",
+            fontSize: "3.8rem",
+            lineHeight: "1.1",
             margin: "0 0 1rem 0",
             fontWeight: "300",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
           }}
-        >
-          {title}
-        </h1>
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         <p
           className="hero-subtitle"
           style={{
-            fontSize: "2.3rem",
+            fontSize: "1.6rem",
+            lineHeight: "1.35",
             opacity: "0.9",
             margin: "0",
             textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)",

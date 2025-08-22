@@ -32,9 +32,11 @@ console.log('DEBUG: Contact page - processedSections:', processedSections);
 
 <Layout title={contact?.data?.title || "Kontakt"}>
   {contact?.data?.hero?.image && (
-    <Fragment slot="head">
-      <link rel="preload" as="image" imagesrcset={`/.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1200&fit=cover&f=avif&q=70 1200w, /.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1600&fit=cover&f=avif&q=70 1600w, /.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1920&fit=cover&f=avif&q=70 1920w`} imagesizes="100vw" />
-    </Fragment>
+    import.meta.env.PROD ? (
+      <link slot="head" rel="preload" as="image" imagesrcset={`/.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1200&fit=cover&f=avif&q=70 1200w, /.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1600&fit=cover&f=avif&q=70 1600w, /.netlify/images?url=${encodeURIComponent(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)}&w=1920&fit=cover&f=avif&q=70 1920w`} imagesizes="100vw" />
+    ) : (
+      <link slot="head" rel="preload" as="image" href={(contact.data.hero.image?.startsWith('/') ? contact.data.hero.image : `/${contact.data.hero.image}`)} />
+    )
   )}
   {contact && contact.data.hero && (
     <Hero 

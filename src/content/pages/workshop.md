@@ -5,7 +5,7 @@ lang: "de"
 textColor: "#000"
 backgroundColor: "rgb(255, 255, 255)"
 hero:
-  title: "Molecular Dance Workshop mit Maruska Ronchi"
+  title: 'Molecular Dance Workshop mit Maruska Ronchi <span class="accent">in&nbsp;Essen</span>'
   subtitle: "07.- 09. November 2025"
   image: "images/Maruska_Ronchi.jpg"
 sections:
@@ -113,7 +113,7 @@ sections:
       Bei Anmeldung sind 100€ zu zahlen, womit der Platz reserviert ist. Die Teilnehmerzahl ist begrenzt, um eine intensive und persönliche Atmosphäre zu gewährleisten.
 
       **Kontakt für Anmeldung:**  
-      butoh@gmx.net (Heidi L.)
+      butoh@gmx.net (Heidi)
 
-      **[Jetzt anmelden →](mailto:butoh@gmx.net)**
+      **[Jetzt via E-Mail anmelden →](mailto:butoh@gmx.net)**
 ---
