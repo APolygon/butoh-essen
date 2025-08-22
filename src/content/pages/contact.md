@@ -29,9 +29,11 @@ sections:
       45239 Essen
 
   - type: "text"
-    title: "Workshop-Anmeldung"
-    textColor: "white"
-    backgroundColor: "black"
+    title: "Workshop-Informationen"
+    textColor: "black"
+    backgroundColor: "white"
     content: |
-      Für die Anmeldung zu unseren Workshops kontaktieren Sie uns bitte per Email. Wir freuen uns darauf, von Ihnen zu hören!
+      **Workshop-Leitung:** Maruska Ronchi  
+      **Workshop-Ort:** Centro Flamenco Maria del Mar, Ruhrtalstr. 33a, 45239 Essen  
+      **Kontakt für Anmeldungen:** butoh@gmx.net
 ---

@@ -67,6 +67,4 @@ sections:
       **Workshop-Leitung:** Maruska Ronchi  
       **Workshop-Ort:** Centro Flamenco Maria del Mar, Ruhrtalstr. 33a, 45239 Essen  
       **Kontakt für Anmeldungen:** butoh@gmx.net
-
-      Alle Workshop-Teilnehmer nehmen auf eigene Verantwortung teil. Bei gesundheitlichen Problemen ist vor Workshop-Beginn ein Arzt zu konsultieren.
 ---

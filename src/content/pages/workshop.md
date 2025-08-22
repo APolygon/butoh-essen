@@ -41,6 +41,8 @@ sections:
 
   - type: "text"
     title: "Zeit und Ort"
+    textColor: "rgb(0, 0, 0)"
+    backgroundColor: "rgb(255, 255, 255)"
     content: |
       - 📅 **Freitag, 07.- Sonntag, 09. November 2025**
       - ⏰ Freitag, 07.11. | 17:00 - 20:00 Uhr  
@@ -53,8 +55,8 @@ sections:
     imagePath: "/images/Location-2.jpg"
     imagePosition: "left"
     imageAlt: "Maruska Ronchi - Butoh dancer and choreographer"
-    textColor: "rgb(0, 0, 0)"
-    backgroundColor: "rgb(255, 255, 255)"
+    textColor: "rgb(255, 255, 255)"
+    backgroundColor: "rgb(0,0,0)"
 
     content: |
       Der Workshop findet statt in Essen-Werden, im **Centro Flamenco Maria del Mar**, Ruhrtalstr. 33a, 45239 Essen. Dort sind wir in einem großen, hellen Tanzraum mit erstklassigem Schwingboden. Umkleiden sind vorhanden.
@@ -69,7 +71,8 @@ sections:
       - Oder mit dem Bus 180 bis zur Haltestelle Von-Schirp-Str. nahezu vor der Tür
 
   - type: "map"
-    backgroundColor: "rgb(255, 255, 255)"
+    textColor: "rgb(255, 255, 255)"
+    backgroundColor: "rgb(0,0,0)"
     imagePath: "/images/Location-1.jpg"
     imagePosition: "left"
     imageAlt: "Centro Flamenco Maria del Mar - Workshop location"
@@ -87,13 +90,11 @@ sections:
       - Tänzer und Nicht-Tänzer
       - Alle, die sich für körperlichen Ausdruck interessieren
       - Menschen, die innere Prozesse durch Bewegung erforschen möchten
-      - Experimentierfreudige Menschen, die sich bewegen können
+      - Experimentierfreudige Menschen
 
   - type: "text"
     title: "Was solltest du mitbringen?"
-    imagePath: "/images/was-mitbringen.png"
     imagePosition: "left"
-    imageAlt: "Was mitbringen"
     textColor: "white"
     backgroundColor: "black"
     content: |
@@ -103,8 +104,8 @@ sections:
 
   - type: "text"
     title: "Anmeldung und Preise"
-    textColor: "white"
-    backgroundColor: "black"
+    textColor: "black"
+    backgroundColor: "white"
     content: |
       **Workshop-Gebühr:** 210€  
       **Earlybird-Preis:** 185€ (bis zum 06.10.2025)
@@ -115,4 +116,29 @@ sections:
       butoh@gmx.net (Heidi)
 
       **[Jetzt via E-Mail anmelden →](mailto:butoh@gmx.net)**
+
+  - type: "text"
+    title: "Haftungsausschluss und Rücktritt"
+    textColor: "white"
+    backgroundColor: "black"
+    content: |
+
+      **Haftungsausschluss**
+
+      Für eventuellen Schaden an Gesundheit und Eigentum innerhalb und außerhalb des jeweiligen Workshops haftet der Teilnehmende selbst.
+      Bei Ausfall eines Kursleitenden oder aufgrund mangelnder Teilnehmerzahl behalten wir uns eine Absage vor. Über Absagen oder erforderliche Über Absagen oder erforderliche Programmänderungen informieren wir dich rechtzeitig vor Veranstaltungsbeginn. Im Falle der Absage einer Veranstaltung wird dir deine Teilnehmergebühr zurückerstattet. Weitere Ansprüche können nicht geltend gemacht werden.
+
+      **Rücktritt**
+
+      Frühbucher-Termin beträgt die Bearbeitungsgebühr 40 €. (evtl. sollte auch die Anzahlung von EUR 100,-- einbehalten, damit man die Möglichkeit erhöht, den Workshop durchzuführen und natürlich, weil die Workshopleiterin eine weite Anreise hat, die geplant und gebucht werden
+      muss.)
+
+      Bei späterer Abmeldung, so wie bei Nichterscheinen wird der gesamte
+      Kursbeitrag berechnet, es sei denn, es wird ein/e
+      Ersatzteilnehmer\*in
+      benannt oder es kann jemand aus einer Warteliste nachrücken, dann
+      wird
+      eine Bearbeitungsgebühr von 40 € fällig. Bei vorzeitigem Verlassen
+      des
+      Kurses erfolgt keine Rückerstattung des Beitrages.
 ---
