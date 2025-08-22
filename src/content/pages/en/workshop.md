@@ -5,8 +5,8 @@ lang: "en"
 textColor: "#000"
 backgroundColor: "rgb(255, 255, 255)"
 hero:
-  title: "Molecular Dance Workshop"
-  subtitle: "with Maruska Ronchi"
+  title: 'Molecular Dance Workshop with Maruska Ronchi <span class="accent">in&nbsp;Essen</span>'
+  subtitle: "07.- 09. November 2025"
   image: "/images/Maruska_Ronchi.jpg"
 sections:
   - type: "text"
