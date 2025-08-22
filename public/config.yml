@@ -8,10 +8,8 @@ backend:
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-local_backend: true
-
-site_url: https://[your-site].netlify.app
-display_url: https://[your-site].netlify.app
+site_url: https://butoh-essen.netlify.app
+display_url: https://butoh-essen.netlify.app
 
 collections:
   - name: "pages"

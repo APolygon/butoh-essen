@@ -1,12 +1,28 @@
+---
+---
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decap CMS</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/admin/preview.css" />
+    <script>
+      (function () {
+        var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        if (isLocal && !location.search.includes('local_backend=true')) {
+          var url = new URL(location.href);
+          url.searchParams.set('local_backend', 'true');
+          location.replace(url.toString());
+        }
+      })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3/dist/decap-cms.js"></script>
   </head>
   <body>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <div id="nc-root"></div>
     <script>
       if (window.CMS) {
         const HeroPreview = ({ entry }) => {
@@ -30,4 +46,6 @@
       }
     </script>
   </body>
-</html>
+  </html>
+
+

@@ -97,10 +97,9 @@ sections:
     textColor: "white"
     backgroundColor: "black"
     content: |
-      - Bequeme Kleidung (dunkle Farben bevorzugt)
-      - Warme Socken oder Tanzschuhe
       - Offenheit für neue Erfahrungen
-      - Eine Matte oder Decke (falls vorhanden)
+      - Bequeme Kleidung
+      - evtl. eine Decke für Entspannungsübungen
 
   - type: "text"
     title: "Anmeldung und Preise"
