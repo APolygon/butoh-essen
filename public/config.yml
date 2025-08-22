@@ -356,6 +356,120 @@ collections:
                       widget: "string",
                       required: false,
                     }
+      - file: "src/content/pages/en/workshop.md"
+        label: "Workshop (EN)"
+        name: "workshop_en"
+        fields:
+          - {
+              label: "CMS Label",
+              name: "cmsLabel",
+              widget: "string",
+              required: false,
+            }
+          - { label: "Lang", name: "lang", widget: "string", required: false }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            required: false
+            fields:
+              - {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "Subtitle",
+                  name: "subtitle",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                  required: false,
+                }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            types:
+              - label: "Text Section"
+                name: "text"
+                widget: "object"
+                fields:
+                  - {
+                      label: "Title",
+                      name: "title",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Content",
+                      name: "content",
+                      widget: "markdown",
+                      required: false,
+                    }
+                  - {
+                      label: "Text Color",
+                      name: "textColor",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Background Color",
+                      name: "backgroundColor",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Image Path",
+                      name: "imagePath",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      label: "Image Position",
+                      name: "imagePosition",
+                      widget: "select",
+                      options: ["left", "right"],
+                      required: false,
+                    }
+                  - {
+                      label: "Image Alt",
+                      name: "imageAlt",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "No Shadow",
+                      name: "noShadow",
+                      widget: "boolean",
+                      default: false,
+                      required: false,
+                    }
+              - label: "Map Section"
+                name: "map"
+                widget: "object"
+                fields:
+                  - {
+                      label: "Title",
+                      name: "title",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Maps URL",
+                      name: "mapsUrl",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Background Color",
+                      name: "backgroundColor",
+                      widget: "string",
+                      required: false,
+                    }
       - file: "src/content/pages/contact.md"
         label: "Contact (DE)"
         name: "contact"

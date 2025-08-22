@@ -17,7 +17,7 @@ const {
 const normalizedSrc = imageSrc ? (imageSrc.startsWith('/') ? imageSrc : `/${imageSrc}`) : undefined;
 const responsiveWidths = [800, 1200, 1600, 1920];
 const isProd = import.meta.env.PROD;
-const toNetlify = (url: string, w: number, format?: string) => `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=cover${format ? `&f=${format}` : ''}&q=70`;
+const toNetlify = (url: string, w: number, format?: string) => `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=inside${format ? `&f=${format}` : ''}&q=70`;
 const avifSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'avif') : normalizedSrc} ${w}w`).join(', ') : '';
 const webpSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'webp') : normalizedSrc} ${w}w`).join(', ') : '';
 const jpegSrcset = normalizedSrc ? responsiveWidths.map(w => `${isProd ? toNetlify(normalizedSrc, w, 'jpeg') : normalizedSrc} ${w}w`).join(', ') : '';

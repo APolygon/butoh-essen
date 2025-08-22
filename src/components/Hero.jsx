@@ -18,7 +18,7 @@ export default function Hero({
     import.meta.env &&
     import.meta.env.PROD;
   const toNetlify = (url, w, format) =>
-    `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=cover${
+    `/.netlify/images?url=${encodeURIComponent(url)}&w=${w}&fit=inside${
       format ? `&f=${format}` : ""
     }&q=70`;
   const avifSrcset = normalizedSrc
