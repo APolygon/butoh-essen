@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.jsx';
 import ContentSection from '../components/ContentSection.jsx';
+import WorkshopMiniNav from '../components/WorkshopMiniNav.jsx';
 import ErrorMessage from '../components/ErrorMessage.astro';
 import GoogleMaps from '../components/GoogleMaps.jsx';
 import { getEntryBySlug } from 'astro:content';
 import { marked } from 'marked';
 
-const workshop = await getEntryBySlug('pages', 'workshop') as any;
+const workshop = await (getEntryBySlug as any)('pages', 'workshop');
 
 console.log('DEBUG: Workshop page - workshop entry:', workshop);
 console.log('DEBUG: Workshop page - workshop data:', workshop?.data);
@@ -30,6 +31,9 @@ if (workshop && workshop.data.sections) {
 }
 
 console.log('DEBUG: Workshop page - processedSections:', processedSections);
+
+// Type relaxations for JSX interop
+const AnyContentSection = ContentSection as any;
 ---
 
 <Layout title={workshop?.data?.title || "Butoh Workshops"}>
@@ -48,6 +52,9 @@ console.log('DEBUG: Workshop page - processedSections:', processedSections);
       imageAlt="Butoh Workshops"
     />
   )}
+  {processedSections.length > 0 && (
+    <WorkshopMiniNav client:load sections={processedSections.filter((s) => s?.title).map((s, i) => ({ id: `section-${i}`, title: s.title })) as any} />
+  )}
   
   <div class="container" style="padding: 0;">
     {processedSections.length > 0 && (
@@ -56,7 +63,8 @@ console.log('DEBUG: Workshop page - processedSections:', processedSections);
         console.log(`DEBUG: Section ${index} mapsUrl:`, section.mapsUrl);
         console.log(`DEBUG: Section ${index} type:`, section.type);
         return (
-          <ContentSection 
+          <AnyContentSection 
+            id={`section-${index}`}
             content={section.content}
             title={section.title}
             textColor={section.textColor || "#000"}
@@ -71,7 +79,7 @@ console.log('DEBUG: Workshop page - processedSections:', processedSections);
     )}
     
     {!workshop && (
-      <ContentSection 
+      <AnyContentSection 
         content="Please check that the workshop content file exists."
         title="Workshop page not found"
         textColor="#000"

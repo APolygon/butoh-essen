@@ -14,6 +14,10 @@ import GoogleMaps from "./GoogleMaps.jsx";
  * - imageAlt?: string (optional image alt text)
  * - mapsUrl?: string (optional Google Maps URL)
  */
+/**
+ * @param {Object} props
+ * @param {string} [props.id]
+ */
 export default function ContentSection({
   content,
   title,
@@ -25,6 +29,7 @@ export default function ContentSection({
   imageAlt = "",
   mapsUrl = "",
   noShadow = false,
+  id = undefined,
 }) {
   const hasImage = imagePath && imagePath.trim() !== "";
   const hasMap = mapsUrl && mapsUrl.trim() !== "";
@@ -61,6 +66,7 @@ export default function ContentSection({
 
   return (
     <div
+      id={id}
       className={`content-section ${className}`}
       style={{
         background: finalBackgroundColor,
@@ -68,6 +74,7 @@ export default function ContentSection({
         padding: "3rem",
         backdropFilter: "blur(10px)",
         marginBottom: "0",
+        scrollMarginTop: "90px",
       }}
     >
       {title && (

@@ -2,6 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.jsx';
 import ContentSection from '../../components/ContentSection.jsx';
+import WorkshopMiniNav from '../../components/WorkshopMiniNav.jsx';
+// Type relaxations for JSX interop
+const AnyContentSection = ContentSection as any;
+
+// duplicate removed
 import ErrorMessage from '../../components/ErrorMessage.astro';
 import GoogleMaps from '../../components/GoogleMaps.jsx';
 import { getEntry } from 'astro:content';
@@ -46,11 +51,15 @@ if (workshop && workshop.data.sections) {
       imageAlt="Butoh Workshops"
     />
   )}
+  {processedSections.length > 0 && (
+    <WorkshopMiniNav client:load sections={processedSections.filter((s) => s?.title).map((s, i) => ({ id: `section-${i}`, title: s.title })) as any} />
+  )}
   
   <div class="container" style="padding: 0;">
     {processedSections.length > 0 && (
       processedSections.map((section, index) => (
-        <ContentSection 
+        <AnyContentSection 
+          id={`section-${index}`}
           content={section.content}
           title={section.title}
           textColor={section.textColor || "#000"}
@@ -64,7 +73,7 @@ if (workshop && workshop.data.sections) {
     )}
     
     {!workshop && (
-      <ContentSection 
+      <AnyContentSection 
         content="Please check that the workshop content file exists."
         title="Workshop page not found"
         textColor="#000"

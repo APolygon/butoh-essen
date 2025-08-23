@@ -19,7 +19,7 @@ export default function Hero({
         position: "relative",
         width: "100vw",
         height: "60vh",
-        margin: "0",
+        margin: 0,
         marginLeft: "calc(-50vw + 50%)",
       }}
     >
