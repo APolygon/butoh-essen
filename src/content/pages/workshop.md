@@ -7,7 +7,7 @@ backgroundColor: "rgb(255, 255, 255)"
 hero:
   title: 'Molecular Dance Workshop mit Maruska Ronchi <span class="accent">in&nbsp;Essen</span>'
   subtitle: "07.- 09. November 2025"
-  image: "images/Maruska_Ronchi.jpg"
+  image: "images/Maruska_Ronchi.webp"
 sections:
   - type: "text"
     title: "Molecular Dance Workshop mit Maruska Ronchi"
