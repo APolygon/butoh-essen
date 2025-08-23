@@ -26,15 +26,38 @@
   }
 
   .content-section {
-    padding: 2rem !important;
+    padding: 1.25rem !important;
   }
+
+  .content-section-text,
+  .content-section-text p,
+  .content-section-text li {
+    line-height: 1.5 !important;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+}
+
+/* Desktop and general text justification for sections */
+.content-section-text,
+.content-section-text p,
+.content-section-text li {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
 }
 
 /* Hero Mobile Responsive Styles */
 @media (max-width: 768px) {
   .hero-container {
-    width: calc(100vw - 2rem) !important;
-    margin: 0 1rem !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    margin-left: calc(-50vw + 50%) !important;
     height: 50vh !important;
   }
 

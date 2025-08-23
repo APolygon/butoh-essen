@@ -54,8 +54,8 @@ export default function ContentSectionTriple({
         variantClasses[variant] || ""
       } ${transitionClasses.join(" ")} ${className}`}
       style={{
-        marginLeft: "2rem",
-        marginRight: "2rem",
+        marginLeft: 0,
+        marginRight: 0,
       }}
     >
       <div

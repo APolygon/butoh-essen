@@ -103,15 +103,25 @@ export default function Navbar() {
             >
               {t("nav.impressum")}
             </a>
-
-            {/* Language switcher */}
+          </div>
+          {/* Right-side actions: language + hamburger */}
+          <div className="nav-actions">
+            <div
+              className={`nav-toggle${menuOpen ? " active" : ""}`}
+              id="nav-toggle"
+              onClick={handleToggle}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <div className="lang-switcher" ref={langDropdownRef}>
               <button
                 className="lang-button"
                 onClick={handleLangToggle}
                 aria-label={t("nav.language")}
               >
-                {currentLang === "de" ? "🇩🇪" : "🇺🇸"} {currentLang.toUpperCase()}
+                {currentLang === "de" ? "DE" : "EN"}
                 <span className={`lang-arrow ${langMenuOpen ? "rotated" : ""}`}>
                   ▼
                 </span>
@@ -136,16 +146,6 @@ export default function Navbar() {
               )}
             </div>
           </div>
-          {/* Mobile menu toggle */}
-          <div
-            className={`nav-toggle${menuOpen ? " active" : ""}`}
-            id="nav-toggle"
-            onClick={handleToggle}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </div>
       </nav>
       <style>{`
@@ -160,6 +160,12 @@ export default function Navbar() {
           z-index: 1000;
           padding: 0;
         }
+        .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .nav-actions .lang-switcher { display: flex; align-items: center; }
         .nav-container {
           max-width: 1200px;
           margin: 0 auto;
@@ -232,10 +238,10 @@ export default function Navbar() {
           background: none;
           border: 1px solid rgba(255, 255, 255, 0.2);
           color: #e2e8f0;
-          padding: 0.5rem 1rem;
-          border-radius: 6px;
+          padding: 0.35rem 0.6rem;
+          border-radius: 8px;
           cursor: pointer;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -297,8 +303,8 @@ export default function Navbar() {
           gap: 4px;
         }
         .nav-toggle span {
-          width: 25px;
-          height: 3px;
+          width: 22px;
+          height: 2px;
           background: #e2e8f0;
           transition: all 0.3s ease;
           border-radius: 2px;
@@ -320,6 +326,8 @@ export default function Navbar() {
             padding-top: 2rem;
             gap: 1rem;
           }
+          .nav-actions { gap: 0.4rem; }
+          .lang-button { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
           .nav-menu[style*="left: 0"] {
             left: 0;
           }
@@ -329,7 +337,7 @@ export default function Navbar() {
             width: 100%;
             text-align: center;
           }
-          .lang-switcher {
+          .nav-menu .lang-switcher {
             margin-top: 1rem;
           }
           .lang-dropdown {

@@ -55,9 +55,6 @@ sections:
 
   - type: "text"
     title: "What should you bring?"
-    imagePath: "/images/was-mitbringen.png"
-    imagePosition: "left"
-    imageAlt: "What to bring"
     textColor: "white"
     backgroundColor: "black"
     content: |

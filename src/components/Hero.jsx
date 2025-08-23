@@ -17,9 +17,10 @@ export default function Hero({
       className="hero-container"
       style={{
         position: "relative",
-        width: "calc(100vw - 4rem)",
+        width: "100vw",
         height: "60vh",
-        margin: "0 2rem",
+        margin: "0",
+        marginLeft: "calc(-50vw + 50%)",
       }}
     >
       {normalizedSrc ? (

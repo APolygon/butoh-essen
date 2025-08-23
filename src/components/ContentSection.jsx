@@ -75,7 +75,8 @@ export default function ContentSection({
           style={{
             fontSize: "2rem",
             fontWeight: "600",
-            marginBottom: "1.5rem",
+            marginBottom: "1.25rem",
+            lineHeight: "1.2",
             color: finalTextColor,
             borderBottom: `2px solid ${finalTextColor}`,
             paddingBottom: "0.5rem",
@@ -91,7 +92,7 @@ export default function ContentSection({
           display: hasImage || hasMap ? "flex" : "block",
           flexDirection: hasImage || hasMap ? "row" : "block",
           gap: hasImage || hasMap ? "2rem" : "0",
-          alignItems: "stretch",
+          alignItems: hasImage || hasMap ? "stretch" : undefined,
         }}
       >
         {/* Map container */}
@@ -166,6 +167,9 @@ export default function ContentSection({
             style={{
               flex: hasImage || hasMap ? "1 1 50%" : "none",
               order: imagePosition === "left" ? 2 : 1,
+              display: hasImage || hasMap ? "flex" : undefined,
+              flexDirection: hasImage || hasMap ? "column" : undefined,
+              justifyContent: hasImage || hasMap ? "center" : undefined,
               lineHeight: "1.8",
               color: finalTextColor,
               fontSize: "1.1rem",

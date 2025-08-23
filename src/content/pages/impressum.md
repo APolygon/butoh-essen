@@ -7,7 +7,7 @@ backgroundColor: "rgb(255, 255, 255)"
 hero:
   title: "Impressum"
   subtitle: "Rechtliche Informationen"
-  image: "images/wolken.JPG"
+  image: "images/wolken_opt.webp"
 sections:
   - type: "text"
     title: "Angaben gemäß § 5 TMG"
