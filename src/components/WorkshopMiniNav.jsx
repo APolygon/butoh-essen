@@ -45,8 +45,8 @@ export default function WorkshopMiniNav({ sections = [] }) {
       },
       {
         root: null,
-        rootMargin: "-120px 0px -60% 0px",
-        threshold: [0.1, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-120px 0px -50% 0px", // Match scroll-margin-top (70px + 44px + 6px)
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
       }
     );
 
@@ -103,10 +103,15 @@ export default function WorkshopMiniNav({ sections = [] }) {
     e.preventDefault();
     const el = document.getElementById(id);
     if (!el) return;
-    const yOffset = -80; // account for fixed navbar
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+
+    // Scroll the element into view - this will work with CSS scroll-snap
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
     centerItem(id);
+
     // Update hash without immediate jump
     if (history.pushState) {
       history.pushState(null, "", `#${id}`);

@@ -2,10 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.jsx';
 import ContentSection from '../components/ContentSection.jsx';
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { marked } from 'marked';
 
-const contact = await getEntryBySlug('pages', 'contact') as any;
+const contact = await getEntry('pages', 'contact');
 
 console.log('DEBUG: Contact page - contact entry:', contact);
 console.log('DEBUG: Contact page - contact data:', contact?.data);
@@ -63,6 +63,7 @@ console.log('DEBUG: Contact page - processedSections:', processedSections);
             imagePosition={section.imagePosition || "right"}
             imageAlt={section.imageAlt || ""}
             mapsUrl={section.mapsUrl || ""}
+            noShadow={section.noShadow || false}
           />
         );
       })

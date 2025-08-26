@@ -52,12 +52,17 @@ sections:
 
   - type: "text"
     title: "Location & Anreise"
-    imagePath: "/images/Location-2.jpg"
-    imagePosition: "left"
-    imageAlt: "Maruska Ronchi - Butoh dancer and choreographer"
     textColor: "rgb(255, 255, 255)"
     backgroundColor: "rgb(0,0,0)"
-
+    imagePath: ["/images/Location-2.jpg", "/images/Location-1.jpg"]
+    imagePosition: ["left", "left"]
+    imageAlt:
+      [
+        "Außenansicht Centro Flamenco",
+        "Centro Flamenco Maria del Mar - Workshop location",
+      ]
+    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.3466940305034!2d6.989697076642!3d51.383168319771265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8c4aefe795181%3A0xe5ba95fb8afa786a!2sCentro%20Flamenco%20Mar%C3%ADa%20del%20Mar!5e1!3m2!1sen!2sde!4v1753594603948!5m2!1sen!2sde"
+    mapPosition: "right"
     content: |
       Der Workshop findet statt in Essen-Werden, im **Centro Flamenco Maria del Mar**, Ruhrtalstr. 33a, 45239 Essen. Dort sind wir in einem großen, hellen Tanzraum mit erstklassigem Schwingboden. Umkleiden sind vorhanden.
 
@@ -69,14 +74,6 @@ sections:
       - Bis Werden S-Bahnhof
       - Dann ca. 600m auf der Ruhrtalstr. Richtung Kettwig laufen
       - Oder mit dem Bus 180 bis zur Haltestelle Von-Schirp-Str. nahezu vor der Tür
-
-  - type: "map"
-    textColor: "rgb(255, 255, 255)"
-    backgroundColor: "rgb(0,0,0)"
-    imagePath: "/images/Location-1.jpg"
-    imagePosition: "left"
-    imageAlt: "Centro Flamenco Maria del Mar - Workshop location"
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.3466940305034!2d6.989697076642!3d51.383168319771265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8c4aefe795181%3A0xe5ba95fb8afa786a!2sCentro%20Flamenco%20Mar%C3%ADa%20del%20Mar!5e1!3m2!1sen!2sde!4v1753594603948!5m2!1sen!2sde"
 
   - type: "text"
     title: "Für wen ist dieser Workshop"
@@ -122,7 +119,6 @@ sections:
     textColor: "white"
     backgroundColor: "black"
     content: |
-
       **Haftungsausschluss**
 
       Für eventuellen Schaden an Gesundheit und Eigentum innerhalb und außerhalb des jeweiligen Workshops haftet der Teilnehmende selbst.

@@ -1,6 +1,5 @@
 import React from "react";
 import { marked } from "marked";
-import GoogleMaps from "./GoogleMaps.jsx";
 
 /**
  * Props:
@@ -9,14 +8,18 @@ import GoogleMaps from "./GoogleMaps.jsx";
  * - className?: string (optional additional classes)
  * - textColor?: string (optional text color, defaults to "#000")
  * - backgroundColor?: string (optional background color, defaults to "rgb(255, 255, 255)")
- * - imagePath?: string (optional image path)
- * - imagePosition?: "left" | "right" (optional, defaults to "right")
- * - imageAlt?: string (optional image alt text)
- * - mapsUrl?: string (optional Google Maps URL)
- */
-/**
- * @param {Object} props
- * @param {string} [props.id]
+ * - media?: Array<{
+ *     type: "image" | "map",
+ *     src: string,
+ *     alt?: string,
+ *     position?: "left" | "right" | "full",
+ *     noShadow?: boolean
+ *   }> (optional array of media items)
+ * - imagePath?: string (legacy: image path)
+ * - imagePosition?: "left" | "right" | "full" (legacy: image position)
+ * - imageAlt?: string (legacy: image alt text)
+ * - mapsUrl?: string (legacy: Google Maps URL)
+ * - noShadow?: boolean (legacy: disable shadow on image)
  */
 export default function ContentSection({
   content,
@@ -24,16 +27,55 @@ export default function ContentSection({
   className = "",
   textColor = "#000",
   backgroundColor = "rgb(255, 255, 255)",
-  imagePath = "",
-  imagePosition = "right",
-  imageAlt = "",
-  mapsUrl = "",
-  noShadow = false,
+  media = [],
   id = undefined,
+  imagePath,
+  imagePosition,
+  imageAlt,
+  mapsUrl,
+  mapPosition,
+  noShadow,
 }) {
-  const hasImage = imagePath && imagePath.trim() !== "";
-  const hasMap = mapsUrl && mapsUrl.trim() !== "";
+  // Convert legacy props to media array if provided
+  if (imagePath || mapsUrl) {
+    const imagePaths = Array.isArray(imagePath) ? imagePath : [imagePath];
+    const imagePositions = Array.isArray(imagePosition)
+      ? imagePosition
+      : [imagePosition];
+    const imageAlts = Array.isArray(imageAlt) ? imageAlt : [imageAlt];
+    const mapsUrls = Array.isArray(mapsUrl) ? mapsUrl : [mapsUrl];
+    const mapPositions = Array.isArray(mapPosition)
+      ? mapPosition
+      : [mapPosition];
 
+    // Handle images
+    if (imagePath) {
+      imagePaths.forEach((path, index) => {
+        if (path) {
+          media.push({
+            type: "image",
+            src: path,
+            alt: imageAlts[index] || "",
+            position: imagePositions[index] || "right",
+            noShadow: noShadow || false,
+          });
+        }
+      });
+    }
+
+    // Handle maps
+    if (mapsUrl) {
+      mapsUrls.forEach((url, index) => {
+        if (url) {
+          media.push({
+            type: "map",
+            src: url,
+            position: mapPosition || "right", // Use mapPosition instead of mapPositions array
+          });
+        }
+      });
+    }
+  }
   // Color shortcuts
   const getColor = (color) => {
     if (color === "black") return "rgb(0, 0, 0)";
@@ -56,13 +98,82 @@ export default function ContentSection({
     finalBackgroundColor = getColor(backgroundColor);
   }
 
-  console.log("ContentSection props:", {
-    content,
-    title,
-    mapsUrl,
-    hasMap,
-    hasImage,
-  });
+  // Group media items by position
+  const mediaByPosition = media.reduce((acc, item) => {
+    const position = item.position || "right";
+    if (!acc[position]) acc[position] = [];
+    acc[position].push(item);
+    return acc;
+  }, {});
+
+  const renderMediaItem = (item, index) => {
+    const isMap = item.type === "map";
+    return (
+      <div
+        key={`${item.type}-${index}`}
+        className={`content-section-${item.type}`}
+        style={{
+          flex: "1 1 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          height: isMap ? "100%" : "auto",
+          width: "100%",
+          marginBottom: "1rem",
+        }}
+      >
+        {isMap ? (
+          <div style={{ width: "100%", height: "100%" }}>
+            <iframe
+              src={item.src}
+              width="100%"
+              height="100%"
+              style={{ border: 0, borderRadius: "8px" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        ) : (
+          <img
+            src={item.src}
+            alt={item.alt || ""}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+              borderRadius: "8px",
+              ...(item.noShadow
+                ? {}
+                : { boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)" }),
+            }}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const renderMediaGroup = (position, itemsOverride, orderOverride) => {
+    const items = itemsOverride ?? mediaByPosition[position];
+    if (!items || items.length === 0) return null;
+
+    return (
+      <div
+        className={`content-section-media-group ${position}`}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          flex: position === "full" ? "1 1 100%" : "0 0 auto",
+          width: position === "full" ? "100%" : "calc(50% - 1rem)",
+          order: orderOverride ?? (position === "left" ? 1 : 3),
+          marginLeft: position === "right" ? "auto" : undefined,
+        }}
+      >
+        {items.map(renderMediaItem)}
+      </div>
+    );
+  };
 
   return (
     <div
@@ -74,7 +185,7 @@ export default function ContentSection({
         padding: "3rem",
         backdropFilter: "blur(10px)",
         marginBottom: "0",
-        scrollMarginTop: "90px",
+        scrollMarginTop: "120px", // 70px (main navbar) + 44px (mini navbar) + 6px buffer
       }}
     >
       {title && (
@@ -96,94 +207,46 @@ export default function ContentSection({
       <div
         className="content-section-container"
         style={{
-          display: hasImage || hasMap ? "flex" : "block",
-          flexDirection: hasImage || hasMap ? "row" : "block",
-          gap: hasImage || hasMap ? "2rem" : "0",
-          alignItems: hasImage || hasMap ? "stretch" : undefined,
+          display: "flex",
+          flexDirection: "row",
+          gap: "2rem",
+          flexWrap: "wrap",
         }}
       >
-        {/* Map container */}
-        {hasMap && (
-          <div
-            className="content-section-map"
-            style={{
-              flex: hasImage ? "1 1 50%" : "1 1 100%",
-              order: imagePosition === "left" ? 2 : 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "stretch",
-              height: hasImage ? "400px" : "400px",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {console.log("Rendering map with URL:", mapsUrl)}
-              {/* Direct iframe instead of GoogleMaps component */}
-              <iframe
-                src={mapsUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, borderRadius: "8px" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Image container - can be used with maps too */}
-        {hasImage && (
-          <div
-            className="content-section-image"
-            style={{
-              flex: "1 1 50%",
-              order: imagePosition === "left" ? 1 : 2,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "stretch",
-              height: hasMap ? "400px" : "auto",
-            }}
-          >
-            <img
-              src={imagePath}
-              alt={imageAlt}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "8px",
-                ...(noShadow
-                  ? {}
-                  : { boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)" }),
-              }}
-            />
-          </div>
-        )}
-
-        {/* Content container - only show if there's content or if it's not a map-only section */}
-        {(content || (!hasMap && !hasImage)) && (
-          <div
-            className="content-section-text"
-            style={{
-              flex: hasImage || hasMap ? "1 1 50%" : "none",
-              order: imagePosition === "left" ? 2 : 1,
-              display: hasImage || hasMap ? "flex" : undefined,
-              flexDirection: hasImage || hasMap ? "column" : undefined,
-              justifyContent: hasImage || hasMap ? "center" : undefined,
-              lineHeight: "1.8",
-              color: finalTextColor,
-              fontSize: "1.1rem",
-            }}
-            dangerouslySetInnerHTML={{ __html: marked(content || "") }}
-          />
-        )}
+        {/* Left media split into first and remaining to support quadrant layout */}
+        {(() => {
+          const leftItems = mediaByPosition.left || [];
+          const firstLeft = leftItems.slice(0, 1);
+          const remainingLeft = leftItems.slice(1);
+          return (
+            <>
+              {renderMediaGroup("left", firstLeft, 1)}
+              {/* Content (top-right) rendered below */}
+              {content && (
+                <div
+                  className="content-section-text"
+                  style={{
+                    flex: "0 0 auto",
+                    width:
+                      (mediaByPosition.left && mediaByPosition.left.length) ||
+                      (mediaByPosition.right && mediaByPosition.right.length)
+                        ? "calc(50% - 1rem)"
+                        : "100%",
+                    order: 2,
+                    lineHeight: "1.8",
+                    color: finalTextColor,
+                    fontSize: "1.1rem",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: marked(content || "") }}
+                />
+              )}
+              {renderMediaGroup("left", remainingLeft, 3)}
+              {renderMediaGroup("right", undefined, 3)}
+            </>
+          );
+        })()}
+        {/* Full-width media group */}
+        {renderMediaGroup("full")}
       </div>
     </div>
   );

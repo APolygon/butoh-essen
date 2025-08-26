@@ -10,16 +10,13 @@ const pages = defineCollection({
     lang: z.enum(["de", "en"]).default("de"),
     textColor: z.string().optional(),
     backgroundColor: z.string().optional(),
-    hero: z.union([
-      z.string().optional(),
-      z
-        .object({
-          title: z.string().optional(),
-          subtitle: z.string().optional(),
-          image: z.string().optional(),
-        })
-        .optional(),
-    ]),
+    hero: z
+      .object({
+        title: z.string().optional(),
+        subtitle: z.string().optional(),
+        image: z.string().optional(),
+      })
+      .optional(),
     body: z.string().optional(),
     sections: z
       .array(
@@ -32,10 +29,21 @@ const pages = defineCollection({
           columns: z.any().optional(),
           textColor: z.string().optional(),
           backgroundColor: z.string().optional(),
-          imagePath: z.string().optional(),
-          imagePosition: z.enum(["left", "right"]).optional(),
-          imageAlt: z.string().optional(),
-          mapsUrl: z.string().optional(),
+          imagePath: z.union([z.string(), z.array(z.string())]).optional(),
+          imagePosition: z
+            .union([
+              z.enum(["left", "right"]),
+              z.array(z.enum(["left", "right"])),
+            ])
+            .optional(),
+          imageAlt: z.union([z.string(), z.array(z.string())]).optional(),
+          mapsUrl: z.union([z.string(), z.array(z.string())]).optional(),
+          mapPosition: z
+            .union([
+              z.enum(["left", "right"]),
+              z.array(z.enum(["left", "right"])),
+            ])
+            .optional(),
           noShadow: z.boolean().optional(),
         })
       )

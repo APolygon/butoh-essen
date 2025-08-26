@@ -5,10 +5,10 @@ import ContentSection from '../components/ContentSection.jsx';
 import WorkshopMiniNav from '../components/WorkshopMiniNav.jsx';
 import ErrorMessage from '../components/ErrorMessage.astro';
 import GoogleMaps from '../components/GoogleMaps.jsx';
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { marked } from 'marked';
 
-const workshop = await (getEntryBySlug as any)('pages', 'workshop');
+const workshop = await getEntry('pages', 'workshop');
 
 console.log('DEBUG: Workshop page - workshop entry:', workshop);
 console.log('DEBUG: Workshop page - workshop data:', workshop?.data);

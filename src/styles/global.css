@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scroll Snap Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-snap-type: y proximity;
+  overflow-y: scroll;
+}
+
+.content-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 /* ContentSection Mobile Responsive Styles */
 @media (max-width: 768px) {
   .content-section-container {
