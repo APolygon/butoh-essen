@@ -7,11 +7,14 @@ export default function Navbar() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const langDropdownRef = useRef(null);
 
-  // Get current language from URL
-  const currentLang =
-    typeof window !== "undefined"
-      ? getLangFromUrl(new URL(window.location.href))
-      : "de";
+  // Hydration-safe language detection: match SSR first, then update on client
+  const [currentLang, setCurrentLang] = useState("de");
+  useEffect(() => {
+    try {
+      const lang = getLangFromUrl(new URL(window.location.href));
+      if (lang) setCurrentLang(lang);
+    } catch {}
+  }, []);
 
   const t = useTranslations(currentLang);
 

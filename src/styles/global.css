@@ -23,21 +23,37 @@ body {
     flex-direction: column !important;
   }
 
+  /* Make media groups take full width on mobile */
+  .content-section-media-group {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
   .content-section-map,
   .content-section-image,
   .content-section-text {
     flex: 1 1 auto !important;
     order: unset !important;
     margin-bottom: 1rem;
+    width: 100% !important;
+  }
+
+  /* Ensure inner media items stretch despite desktop alignments */
+  .content-section-media-group .content-section-image,
+  .content-section-media-group .content-section-map {
+    align-self: stretch !important;
+    width: 100% !important;
   }
 
   .content-section-image img {
     height: auto !important;
-    max-height: 400px;
+    width: 100% !important;
   }
 
   .content-section-map iframe {
-    height: 300px !important;
+    height: 60vh !important;
+    min-height: 320px !important;
+    width: 100% !important;
   }
 
   .content-section {
