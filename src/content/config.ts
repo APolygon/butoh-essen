@@ -38,6 +38,7 @@ const pages = defineCollection({
             .optional(),
           imageAlt: z.union([z.string(), z.array(z.string())]).optional(),
           mapsUrl: z.union([z.string(), z.array(z.string())]).optional(),
+          hideFromNav: z.boolean().optional(),
           mapPosition: z
             .union([
               z.enum(["left", "right"]),

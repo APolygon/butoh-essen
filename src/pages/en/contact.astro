@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.jsx';
 import ContentSection from '../../components/ContentSection.jsx';
 import { getEntry } from 'astro:content';
+import WorkshopMiniNav from '../../components/WorkshopMiniNav.jsx';
 import { marked } from 'marked';
 
 const contact = await getEntry('pages', 'en/contact');
@@ -46,6 +47,9 @@ console.log('DEBUG: Contact page - processedSections:', processedSections);
       imageAlt="Contact"
     />
   )}
+  {processedSections.length > 0 && (
+    <WorkshopMiniNav client:load sections={processedSections.filter((s) => s?.title && !s?.hideFromNav).map((s, i) => ({ id: `section-${i}`, title: s.title })) as any} />
+  )}
   
   <div class="container">
     {processedSections.length > 0 && (
@@ -55,6 +59,7 @@ console.log('DEBUG: Contact page - processedSections:', processedSections);
         console.log(`DEBUG: Section ${index} type:`, section.type);
         return (
           <ContentSection 
+            id={`section-${index}`}
             content={section.content}
             title={section.title}
             textColor={section.textColor || "#000"}

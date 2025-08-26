@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.jsx';
 import ContentSection from '../components/ContentSection.jsx';
 import { getEntry } from 'astro:content';
+import WorkshopMiniNav from '../components/WorkshopMiniNav.jsx';
 import { marked } from 'marked';
 
 const impressum = await getEntry('pages', 'impressum');
@@ -45,6 +46,9 @@ console.log('DEBUG: Impressum page - processedSections:', processedSections);
       imageSrc={(impressum.data.hero.image?.startsWith('/') ? impressum.data.hero.image : `/${impressum.data.hero.image}`)}
     />
   )}
+  {processedSections.length > 0 && (
+    <WorkshopMiniNav client:load sections={processedSections.filter((s) => s?.title && !s?.hideFromNav).map((s, i) => ({ id: `section-${i}`, title: s.title })) as any} />
+  )}
   
   <div class="container">
     {processedSections.map((section: any, index: number) => {
@@ -54,6 +58,7 @@ console.log('DEBUG: Impressum page - processedSections:', processedSections);
       
       return (
         <ContentSection
+          id={`section-${index}`}
           content={section.content}
           title={section.title}
           textColor={section.textColor}
