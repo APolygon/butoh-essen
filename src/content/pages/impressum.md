@@ -65,7 +65,7 @@ sections:
     content: |
       ## 1. Verantwortliche Stelle
 
-      Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:
+      Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist die für die Gestaltung & technische Umsetzung verantwortliche Person.
 
       ## 2. Hosting
 
