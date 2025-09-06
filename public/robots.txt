@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Block admin area from search engines
+Disallow: /admin/
+
+# Block any potential sensitive directories
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+
+# Block impressum pages from search engines
+Disallow: /impressum/
+Disallow: /de/impressum/
+Disallow: /en/impressum/
+
+# Allow all other content
+Allow: /images/
+Allow: /assets/
+Allow: /contact/
+Allow: /de/
+Allow: /en/
+
+# Sitemap location
+Sitemap: https://butospirit.org/sitemap-index.xml
