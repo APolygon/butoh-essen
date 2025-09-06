@@ -31,11 +31,9 @@ sections:
     textColor: "white"
     backgroundColor: "black"
     content: |
-      Maruska Ronchi ist Tänzerin und Choreografin. Nach ihrem Abschluss in Zeitgenössischem Tanz lernte sie 2009 durch Atsushi Takenouchi den Butoh kennen. Sie studierte 14 Jahre lang bei ihm und wurde seine Assistentin an der Butoh-Schule in Italien, wo sie intensiv praktizieren, lernen und lehren konnte.
+      Maruska Ronchi ist Tänzerin und Choreografin. Nach ihrem Abschluss in Zeitgenössischem Tanz lernte sie 2009 durch Atsushi Takenouchi Butoh kennen. Sie studierte 14 Jahre lang bei ihm und wurde seine Assistentin an der Butoh-Schule in Italien, wo sie intensiv praktizieren, lernen und lehren konnte.
 
-      Sie lernte andere wichtige Butoh-Meister kennen, darunter Yumiko Yoshioka, Yoshito Ohno, Minako Seki, Seisaku, Carlotta Ikeda, Ima Tenko, Natsu Nakajima, Semimaru (Sankai Yuku), Imre Tohrman und Masaki Iwana.
-
-      Ihre Forschung ist ein alchemistischer Prozess, der nach physischer und spiritueller Verwandlung in der Materie des Körpers strebt. Sie untersucht nicht nur die Bewegung, sondern auch die Stille, die Leere, die Ruhe und den Raum dazwischen.
+      Sie lernte andere wichtige Butoh-Meister kennen, darunter Yumiko Yoshioka, Yoshito Ohno, Minako Seki, Seisaku, Carlotta Ikeda, Ima Tenko, Natsu Nakajima, Semimaru (Sankai Yuku), Imre Thorman und Masaki Iwana.
 
       Sie reist um die Welt und teilt ihren Tanz und ihre Praktiken durch Performances, Workshops und die Zusammenarbeit mit internationalen Künstlern. Sie präsentiert ihre Werke in vielen Ländern Europas, sowie in Kanada, Mauritius und Japan.
 
@@ -76,7 +74,7 @@ sections:
       - Oder mit dem Bus 180 bis zur Haltestelle Von-Schirp-Str. nahezu vor der Tür
 
   - type: "text"
-    title: "Für wen ist dieser Workshop"
+    title: "Für wen ist dieser Workshop?"
     imagePath: "/images/people.png"
     imagePosition: "left"
     imageAlt: "Maruska Ronchi - Butoh dancer and choreographer"
@@ -84,7 +82,6 @@ sections:
     backgroundColor: "white"
     content: |
       - **Alle Erfahrungsstufen willkommen** - Für den Workshop sind keine tänzerischen Vorkenntnisse erforderlich
-      - Tänzer und Nicht-Tänzer
       - Alle, die sich für körperlichen Ausdruck interessieren
       - Menschen, die innere Prozesse durch Bewegung erforschen möchten
       - Experimentierfreudige Menschen
@@ -122,12 +119,11 @@ sections:
       **Haftungsausschluss**
 
       Für eventuellen Schaden an Gesundheit und Eigentum innerhalb und außerhalb des jeweiligen Workshops haftet der Teilnehmende selbst.
-      Bei Ausfall eines Kursleitenden oder aufgrund mangelnder Teilnehmerzahl behalten wir uns eine Absage vor. Über Absagen oder erforderliche Über Absagen oder erforderliche Programmänderungen informieren wir dich rechtzeitig vor Veranstaltungsbeginn. Im Falle der Absage einer Veranstaltung wird dir deine Teilnehmergebühr zurückerstattet. Weitere Ansprüche können nicht geltend gemacht werden.
+      Bei Ausfall eines Kursleitenden oder aufgrund mangelnder Teilnehmerzahl behalten wir uns eine Absage vor. Über Absagen oder erforderliche Programmänderungen informieren wir dich rechtzeitig vor Veranstaltungsbeginn. Im Falle der Absage einer Veranstaltung wird dir deine Teilnehmergebühr zurückerstattet. Weitere Ansprüche können nicht geltend gemacht werden.
 
       **Rücktritt**
 
-      Frühbucher-Termin beträgt die Bearbeitungsgebühr 40 €. (evtl. sollte auch die Anzahlung von EUR 100,-- einbehalten, damit man die Möglichkeit erhöht, den Workshop durchzuführen und natürlich, weil die Workshopleiterin eine weite Anreise hat, die geplant und gebucht werden
-      muss.)
+      Bei Rücktritt bis zum Ablauf des Frühbuchertermins beträgt die Bearbeitungsgebühr EUR 40,--, wenn ein Ersatzteilnehmer*in benannt wird. Falls es keinen Ersatzteilnehmer*in gibt, wird die Anzahlung von EUR 100,-- einbehalten. 
 
       Bei späterer Abmeldung, so wie bei Nichterscheinen wird der gesamte
       Kursbeitrag berechnet, es sei denn, es wird ein/e
