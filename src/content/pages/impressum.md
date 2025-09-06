@@ -14,21 +14,16 @@ sections:
     textColor: "black"
     backgroundColor: "white"
     content: |
-      **Diensteanbieterin / Website-Betreiberin (Anschrift ladungsfähig)**
+      **Verantwortlich für den Inhalt dieser Webseite ist**
 
-      **Butoh Essen** _(Projekt-/Geschäftsbezeichnung; allein nicht ausreichend)_  
-      **Heidi ⚠️ FEHLT: Vollständiger Nachname**  
-      **⚠️ FEHLT: Straße und Hausnummer**  
-      **⚠️ FEHLT: Postleitzahl** Essen  
+      Heidi Lorei  
+      c/o COCENTER 
+      Stuttgarter Str. 106  
+      70736 Fellbach.  
       Deutschland
 
       **Kontakt:**  
-      **E-Mail:** butoh@gmx.net  
-
-
-      **(falls vorhanden)** USt-IdNr.: ⚠️ FEHLT  
-      **(falls vorhanden)** Registereintrag (z. B. Handels-/Vereinsregister) inkl. Registernummer: ⚠️ FEHLT  
-      **(falls juristische Person)** Vertretungsberechtigte Person: ⚠️ FEHLT
+      **E-Mail:** butoh@gmx.net
 
   - type: "text"
     title: "Gestaltung & technische Umsetzung"
