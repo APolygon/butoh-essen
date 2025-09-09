@@ -116,9 +116,5 @@ sections:
       Durch das Hosting bei Netlify erfolgt eine Übermittlung von Daten (insbesondere Server-Logs) in die USA.  
       Netlify ist unter dem **EU-U.S. Data Privacy Framework (DPF)** zertifiziert und gewährleistet damit ein angemessenes Datenschutzniveau.
 
-      Stand: August 2025
+      Stand: September 2025
 ---
-
-# Impressum
-
-This content is now handled by the sections above.
